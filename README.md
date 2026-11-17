@@ -63,6 +63,6 @@ Run `npm run deploy:check` for a local, non-publishing Workers deployment valida
 
 ## Visual checks
 
-Run the Vite server, then `npm run test:visual` to compare all 16 interfaces at the four requested desktop sizes. Local baselines are explicitly LarpScreens regression fixtures, not official platform references. Use `npm run test:visual:update` only after reviewing intended visual changes. HTML/JSON reports and PNG differences are generated under `test-results/visual/regression`.
+Run the Vite server, then `npm run test:visual` to compare all 16 interfaces at the four requested desktop sizes. Local baselines are explicitly LarpScreens regression fixtures, not official platform references. Use `npm run test:visual:update` only after reviewing intended visual changes. HTML/JSON reports and PNG differences are generated under `visual-tests/regression`.
 
-`npm run test:visual:official` is separate and fails when genuine official reference screenshots are unavailable. Its report is under `test-results/visual/official`. See [visual accuracy status](docs/VISUAL_ACCURACY_STATUS.md) for the research blocker and outstanding platform comparisons.
+`npm run test:visual:official` is separate and fails when genuine official reference screenshots are unavailable. Its report is under `visual-tests/official`. See [visual accuracy status](docs/VISUAL_ACCURACY_STATUS.md) for the research blocker and outstanding platform comparisons.

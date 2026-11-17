@@ -7,7 +7,7 @@ const update = process.argv.includes("--update");
 const official = process.argv.includes("--official");
 if (update && official)
   throw Error("Official references cannot be generated from LarpScreens");
-const out = `test-results/visual/${official ? "official" : "regression"}`;
+const out = `visual-tests/${official ? "official" : "regression"}`;
 await fs.mkdir(out, { recursive: true });
 const baseline = "tests/visual/baselines";
 await fs.mkdir(baseline, { recursive: true });
@@ -39,7 +39,7 @@ try {
           });
           try {
             await fs.copyFile(
-              `test-results/visual/regression/${key}-actual.png`,
+              `visual-tests/regression/${key}-actual.png`,
               `${out}/${key}-actual.png`,
             );
           } catch {}

@@ -6,6 +6,6 @@ For each application, obtain a genuine screenshot from the official product or o
 
 Expected filenames: `<screen>-<width>x<height>.png`, with dimensions 1440×900, 1512×982, 1728×1117, and 1920×1080. `tests/visual/screens.mjs` lists screen IDs and official research destinations.
 
-`npm run test:visual:official` writes side-by-side actual/reference/difference images and a report to `test-results/visual`. Missing references fail the command rather than passing or being silently skipped. Pixel similarity alone does not prove equivalent layout or interactions: simulated content differences and simulation disclosure must be reviewed by a person.
+`npm run test:visual:official` writes side-by-side actual/reference/difference images and a report to `visual-tests`. Missing references fail the command rather than passing or being silently skipped. Pixel similarity alone does not prove equivalent layout or interactions: simulated content differences and simulation disclosure must be reviewed by a person.
 
 Local regression baselines in `tests/visual/baselines` serve a separate purpose: detecting unintended changes to LarpScreens. They are never evidence of matching an official platform.

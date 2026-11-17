@@ -24,8 +24,12 @@ With `npm run dev` running:
 - `npm run test:visual`: compares all 64 cases against those local baselines.
 - `npm run test:visual:official`: attempts official comparisons; fails while genuine reference screenshots are absent.
 
-Reports are written to `test-results/visual/regression/report.html` and `test-results/visual/official/report.html` (with JSON reports beside them). Do not update local baselines merely to hide an unexpected difference: inspect the generated screenshots first.
+Reports are written to `visual-tests/regression/report.html` and `visual-tests/official/report.html` (with JSON reports beside them). Do not update local baselines merely to hide an unexpected difference: inspect the generated screenshots first.
 
 ## Executed checks
 
 The production build, fourteen accounting tests and the interactive browser flow suite passed. A first capture pass generated 64 local fixtures, followed by a separate screenshot-and-pixel-comparison pass. The official comparison command reported 64 missing genuine references and exited with failure, as intended; this is an outstanding blocker, not a passing test.
+
+## Required access change
+
+Official platform domains and the deployed website domain have now been added to the restricted network configuration draft, preserving the package-manager presets. This draft save does not change runtime access. Review and save the changes in environment settings, then publish the environment. Probe requests after the draft save still returned proxy HTTP 403. Genuine reference collection and comparison cycles must resume after the network update applies. No redesign should begin before those images are inspected.
