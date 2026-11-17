@@ -65,6 +65,7 @@ export type State = {
   visitors: { x: number; y: number; id: number }[];
   rng: number;
   limits?: LimitOrder[];
+  assetHistory?: number[][];
 };
 export const defaultSettings: Settings = {
   speed: 1,
@@ -100,7 +101,12 @@ export function createState(kind: Kind, seed = 42): State {
     followers: 128450,
     views: 2847280,
     likes: 184520,
-    revenue: 0,
+    revenue:
+      kind === "youtube"
+        ? (2847280 * 4.2) / 1000
+        : kind === "tiktok"
+          ? (2847280 * 0.65) / 1000
+          : 0,
     customers: 0,
     mrr: 0,
     orders: [],
@@ -110,7 +116,10 @@ export function createState(kind: Kind, seed = 42): State {
     history: [],
     chat: [],
     visitors: [],
-    rng: seed,
+    rng:
+      (seed +
+        [...kind].reduce((v, c) => Math.imul(v, 31) + c.charCodeAt(0), 0)) >>>
+      0,
   };
   let v =
     kind === "stocks" || kind === "crypto"
@@ -164,6 +173,9 @@ export function createState(kind: Kind, seed = 42): State {
         ]),
       ) as State["history"][number],
   );
+  s.assetHistory = s.prices.map((price) =>
+    s.history.map((h) => (h.value / (s.value || 1)) * price),
+  );
   return s;
 }
 export function transfer(s: State, amount: number): State {
@@ -174,7 +186,7 @@ export function transfer(s: State, amount: number): State {
     savings: s.savings + amount,
     transactions: [
       {
-        id: s.transactions.length + 1,
+        id: s.transactions.reduce((max, t) => Math.max(max, t.id), 0) + 1,
         label: "Transfer to savings",
         amount: -amount,
         time: s.tick,
@@ -212,7 +224,7 @@ export function trade(s: State, index: number, quantity: number): State {
     value: s.prices.reduce((a, p, i) => a + p * quantities[i], 0),
     transactions: [
       {
-        id: s.tick + Date.now(),
+        id: s.transactions.reduce((max, t) => Math.max(max, t.id), 0) + 1,
         label: `${quantity > 0 ? "Buy" : "Sell"} ${Math.abs(quantity).toFixed(6)} units · asset ${index + 1}`,
         amount: -cost,
         time: s.tick,
@@ -249,6 +261,12 @@ export function step(prev: State, kind: Kind, c: Settings): State {
     s.prices = s.prices.map((p) =>
       Math.max(0.01, p * (1 + common + (r() - 0.5) * 0.003 * c.volatility)),
     );
+    s.assetHistory = s.prices.map((price, i) => [
+      ...(
+        prev.assetHistory?.[i] || prev.history.map(() => prev.prices[i])
+      ).slice(-63),
+      price,
+    ]);
     s.value = s.prices.reduce((a, p, i) => a + p * s.quantities[i], 0);
     s.limits = (prev.limits || []).map((order) => {
       if (order.status !== "pending") return order;
@@ -277,7 +295,7 @@ export function step(prev: State, kind: Kind, c: Settings): State {
       const subscription = r() < 0.3;
       s.orders = [
         {
-          id: s.tick,
+          id: s.orders.reduce((max, t) => Math.max(max, t.id), 0) + 1,
           label: subscription
             ? "Studio plan · subscription"
             : ["Essential kit", "Pro collection", "Digital bundle"][
@@ -318,7 +336,7 @@ export function step(prev: State, kind: Kind, c: Settings): State {
       s.revenue += amount;
       s.orders = [
         {
-          id: s.tick,
+          id: s.orders.reduce((max, t) => Math.max(max, t.id), 0) + 1,
           label: amount === 5 ? "New demo subscription" : "Demo donation",
           amount,
           time: s.tick,
@@ -382,7 +400,7 @@ export function placeLimit(
     limits: [
       ...(s.limits || []),
       {
-        id: Date.now(),
+        id: (s.limits || []).reduce((max, t) => Math.max(max, t.id), 0) + 1,
         asset,
         quantity,
         price,
@@ -421,7 +439,7 @@ export function convert(
     value: s.prices.reduce((a, p, i) => a + p * quantities[i], 0),
     transactions: [
       {
-        id: Date.now(),
+        id: s.transactions.reduce((max, t) => Math.max(max, t.id), 0) + 1,
         label: `Convert ${quantity} units · asset ${from + 1} → ${to + 1}`,
         amount: 0,
         time: s.tick,
@@ -441,14 +459,7 @@ export function rebase(s: State): State {
   return {
     ...s,
     tick: 0,
-    history: s.history.map((h) => ({
-      ...h,
-      open: s.history.at(-1)!.value,
-      close: s.history.at(-1)!.value,
-      value: s.history.at(-1)!.value,
-      high: s.history.at(-1)!.value,
-      low: s.history.at(-1)!.value,
-    })),
+    history: s.history.map((h) => ({ ...h })),
     value,
     initial: value,
     startingWealth: value + s.cash,

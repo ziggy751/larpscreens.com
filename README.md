@@ -17,14 +17,14 @@ Vite serves port 5173. `npm run build` type-checks and creates `dist/`; `npm run
 
 ```sh
 npm test
-node tests/browser.mjs
+npm run test:browser
 ```
 
 The browser smoke test uses `/usr/bin/chromium` and a running Vite server. It checks trading, history, native fullscreen, saved starting setups, business orders, responsive resizing, and browser errors. Engine tests verify cash/asset conservation, transfers, conversion, limit fills, revenue/order consistency, chart totals, deterministic simulation, and reversal of transactions.
 
 ## Workflow
 
-Choose a dashboard from the searchable library. Use Edit stats to configure balances, holdings, prices, profiles, metrics, currency, speed, and scenarios. Save Starting Setup stores a reusable baseline. Restart From Saved Setup restores that baseline and clears subsequent actions. Reset Simulation returns to the original seeded demo. Transactions can be reversed individually from Activity if current balances permit it.
+Choose a dashboard from the searchable library. Use Edit stats to configure balances, holdings, prices, profiles, metrics, currency, speed, and scenarios. Save Setup stores a reusable baseline. Reset Activity restores that baseline and clears subsequent actions. Reset Everything returns to the original seeded demo and default settings. Transactions can be reversed individually from Activity if current balances permit it.
 
 Use Fullscreen (or F) for native browser fullscreen with permanent simulation labelling. Trading, transfers, navigation, history, and chart controls remain available. Escape exits. Space pauses/resumes; R resets. Editor controls are hidden during fullscreen. If the browser denies native fullscreen, a full-window fallback is used.
 
@@ -32,7 +32,7 @@ Dashboard state, profiles, favourites, configurations, and settings persist in t
 
 ## Design and scope
 
-The eight supplied original dashboard references define the full-screen navigation, KPI cards, colours, typography, and chart/activity layout. They are implemented as components, not image backgrounds. Public Robinhood/Coinbase/YouTube research was blocked by network policy; exact current third-party interfaces are not verified. The gallery includes 33 presets based on 11 dashboard families; variant presets share a family layout.
+The 13 supplied design references guide 16 distinct application interfaces, including five separate wallet/discovery/trading designs. The library omits repeated layout variants while retaining compatibility with their saved IDs. See [design and validation notes](docs/DESIGN_OVERHAUL.md). Official platform research and live-site inspection were blocked by network policy; exact current third-party interfaces are not verified.
 
 Simulation observations use one bounded timer per active dashboard and retain 64 chart samples. Prices have shared market movement and asset-specific changes. Market/limit orders and conversion update holdings and cash. Pending limits execute only when price and funds/holdings permit; there is no fees, slippage, leverage, or exchange-grade order-book model. Business revenue follows recorded orders; bank balances change only through edits or explicit transfers. Simulated histories are synthetic, not actual historical data. Performance on real MacBook Safari hardware has not been benchmarked.
 

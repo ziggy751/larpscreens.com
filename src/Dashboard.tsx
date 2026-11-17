@@ -1,3 +1,4 @@
+import { NativeScreen } from "./NativeScreens";
 import {
   useState,
   useEffect,
@@ -17,29 +18,25 @@ import {
   FolderOpen,
   ChevronRight,
 } from "lucide-react";
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
-import { BusinessDesk } from "./BusinessDesk";
-import { TradeDesk } from "./TradeDesk";
 import { toPng } from "html-to-image";
 import {
+  defaultSettings,
   createState,
   step,
   transfer,
   trade,
   rebase,
-  undoTransaction,
   type Kind,
   type Settings,
   type State,
 } from "./engine";
-type Template = { id: string; kind: Kind; name: string; color: string };
+type Template = {
+  variant?: string;
+  id: string;
+  kind: Kind;
+  name: string;
+  color: string;
+};
 const designs: Record<
   Kind,
   {
@@ -150,6 +147,7 @@ export function Dashboard({
   setComparison?: (s: string | null) => void;
 }) {
   const [message, setMessage] = useState("");
+  const [chartDraft, setChartDraft] = useState("");
   const notify = (text: string) => {
     setMessage(text);
     externalNotify(text);
@@ -175,12 +173,17 @@ export function Dashboard({
       return createState(t.kind, c.seed);
     }
   });
+  const lastOrder = useRef(s.orders[0]?.id);
+  useEffect(() => {
+    const order = s.orders[0];
+    if (order && order.id !== lastOrder.current) {
+      lastOrder.current = order.id;
+      notify(`${order.label} · ${money(order.amount)}`);
+    }
+  }, [s.orders[0]?.id]);
   const [running, setRunning] = useState(true),
     [editing, setEditing] = useState(false),
     [full, setFull] = useState(false),
-    [tab, setTab] = useState("Overview"),
-    [range, setRange] = useState("1D"),
-    [candles, setCandles] = useState(false),
     [amount, setAmount] = useState(250),
     [qty, setQty] = useState(1),
     [asset, setAsset] = useState(0),
@@ -207,15 +210,30 @@ export function Dashboard({
   const patch = (key: keyof Settings, v: number | string | boolean) =>
     setSettings((p) => ({ ...p, [key]: v }));
   const reset = () => {
-    setS(createState(t.kind, c.seed));
-    notify("Simulation reset to its starting state");
+    setS(createState(t.kind, defaultSettings.seed));
+    setSettings({ ...defaultSettings });
+    setCurrency(defaultSettings.currency);
+    setChartDraft("");
+    setProfile("");
+    setBio("Fictional creator account");
+    setAvatar("");
+    localStorage.removeItem(storeKey + "-starting");
+    notify("Original default setup restored");
   };
+  const latestState = useRef(s);
+  latestState.current = s;
   useEffect(() => {
-    const timer = setTimeout(() => {
-      localStorage.setItem(storeKey, JSON.stringify(s));
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [s, storeKey]);
+    const persist = () => {
+      try {
+        localStorage.setItem(storeKey, JSON.stringify(latestState.current));
+      } catch {}
+    };
+    const timer = setInterval(persist, 250);
+    return () => {
+      clearInterval(timer);
+      persist();
+    };
+  }, [storeKey]);
   useEffect(() => {
     localStorage.setItem(storeKey + "-profile", profile);
     localStorage.setItem(storeKey + "-bio", bio);
@@ -228,6 +246,10 @@ export function Dashboard({
     }, 1000 / c.speed);
     return () => clearInterval(interval);
   }, [running, live, c, t.kind]);
+  useEffect(() => {
+    document.body.classList.toggle("simulation-presenting", full);
+    return () => document.body.classList.remove("simulation-presenting");
+  }, [full]);
   const present = async () => {
     setEditing(false);
     if (document.fullscreenElement) {
@@ -249,6 +271,11 @@ export function Dashboard({
   }, []);
   useEffect(() => {
     const handle = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (document.fullscreenElement) document.exitFullscreen();
+        setFull(false);
+        return;
+      }
       if (
         ["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(
           (e.target as HTMLElement).tagName,
@@ -317,121 +344,7 @@ export function Dashboard({
     t.kind === "crypto"
       ? ["BTC", "ETH", "SOL", "XRP", "DOGE"]
       : ["NVDA", "AAPL", "MSFT", "TSLA", "AMZN"];
-  const profit = s.value + s.cash - (s.startingWealth ?? s.initial + s.cash);
-  const returnPercent = (profit / ((s.startingWealth ?? s.initial) || 1)) * 100;
-  const numbers =
-    t.kind === "stocks"
-      ? [money(s.value), `${returnPercent.toFixed(2)}%`, money(s.initial)]
-      : t.kind === "crypto"
-        ? [money(s.value), money(s.prices[0]), money(s.prices[1])]
-        : t.kind === "business"
-          ? [money(s.revenue), num(s.orders.length), num(s.customers)]
-          : t.kind === "banking"
-            ? [money(s.cash + s.savings), money(s.cash), money(s.savings)]
-            : t.kind === "streaming"
-              ? [
-                  num(s.secondary || 1248),
-                  num(s.followers),
-                  num(s.orders.filter((o) => o.amount === 5).length),
-                ]
-              : t.kind === "analytics"
-                ? [
-                    num(s.secondary || 842),
-                    num(s.views),
-                    num(Math.floor(s.views * 0.031)),
-                  ]
-                : t.kind === "youtube"
-                  ? [num(s.followers), num(s.views), money(s.revenue)]
-                  : t.kind === "instagram"
-                    ? [
-                        num(s.followers),
-                        num(Math.floor(s.views * 0.8)),
-                        num(s.likes),
-                      ]
-                    : t.kind === "luxury"
-                      ? [money(s.value), money(s.cash), money(s.savings)]
-                      : [num(s.followers), num(s.views), num(s.likes)];
-  const sub =
-    t.kind === "stocks"
-      ? [
-          `${money(profit)} since opening`,
-          `${money(profit)} all time`,
-          `${s.quantities.filter((q) => q > 0).length} assets`,
-        ]
-      : t.kind === "business"
-        ? [
-            `${s.orders.length} recorded orders`,
-            `${money(s.orders.length ? s.revenue / s.orders.length : 0)} avg. order`,
-            `${money(s.mrr)} recurring / month`,
-          ]
-        : t.kind === "banking"
-          ? [
-              "Fictional accounts",
-              "Transfers update balances",
-              "No random balance changes",
-            ]
-          : ["Fictional data", "Simulated activity", "Simulation only"];
-  const points = s.history.slice(
-    -({ "1D": 64, "1W": 48, "1M": 32, "1Y": 16 }[range] || 64),
-  );
-  const activity = market
-    ? symbols
-        .slice(0, 4)
-        .map((name, i) => [
-          name,
-          `${((s.prices[i] / createState(t.kind, c.seed).prices[i] - 1) * 100).toFixed(2)}%`,
-        ])
-    : t.kind === "business"
-      ? s.orders
-          .slice(0, 4)
-          .map((o) => [`Order #${o.id}`, `+${money(o.amount)}`])
-      : t.kind === "youtube" || t.kind === "tiktok"
-        ? [
-            ["Video A", num(Math.floor(s.views * 0.4))],
-            ["Video B", num(Math.floor(s.views * 0.28))],
-            ["Video C", num(Math.floor(s.views * 0.2))],
-            [
-              "Video D",
-              num(
-                s.views -
-                  Math.floor(s.views * 0.4) -
-                  Math.floor(s.views * 0.28) -
-                  Math.floor(s.views * 0.2),
-              ),
-            ],
-          ]
-        : t.kind === "instagram"
-          ? [
-              ["Reel views", num(s.views)],
-              ["Profile visits", num(Math.floor(s.views * 0.06))],
-              ["Likes", num(s.likes)],
-              ["Engagement", `${((s.likes / s.views) * 100).toFixed(2)}%`],
-            ]
-          : t.kind === "analytics"
-            ? [
-                ["Direct", "42%"],
-                ["Search", "31%"],
-                ["Social", "19%"],
-                ["Other", "8%"],
-              ]
-            : t.kind === "streaming"
-              ? [
-                  ["New followers", num(s.followers - 128450)],
-                  [
-                    "Subscriptions",
-                    num(s.orders.filter((o) => o.amount === 5).length),
-                  ],
-                  ["Donations", money(s.revenue)],
-                  [
-                    "Peak viewers",
-                    num(Math.max(1248, ...s.history.map((p) => p.value))),
-                  ],
-                ]
-              : [
-                  ["Checking", money(s.cash)],
-                  ["Savings", money(s.savings)],
-                  ["Transactions", num(s.transactions.length)],
-                ];
+
   return (
     <div
       className={`ref-dashboard ${full ? "ref-fullscreen" : ""}`}
@@ -462,386 +375,67 @@ export function Dashboard({
           <Maximize2 size={15} /> Fullscreen
         </button>
       </div>
-      <div className="reference-frame" ref={capture}>
-        <aside className="reference-nav">
-          <h2>LARPSCREENS</h2>
-          <small>SIMULATED DATA</small>
-          <nav>
-            {[
-              "Overview",
-              "Analytics",
-              market ? "Portfolio" : "Content",
-              "Activity",
-              "Settings",
-            ].map((n) => (
-              <button
-                className={tab === n ? "selected" : ""}
-                key={n}
-                onClick={() => {
-                  if (n === "Settings") {
-                    if (!full) setEditing(true);
-                    else setTab("Analytics");
-                  } else setTab(n);
-                }}
-              >
-                {n}
-              </button>
-            ))}
-          </nav>
-          <button className="ref-exit" onClick={onBack}>
-            <ArrowLeft size={16} /> Library
-          </button>
-        </aside>
-        <main className="reference-main">
-          <header className="reference-header">
-            <div>
-              <h1>{d.title}</h1>
-              <p>{d.subtitle}</p>
-            </div>
-            <span className="demo-mode">SIMULATION</span>
-            {full && (
-              <button
-                className="exit-full"
-                aria-label="Exit fullscreen"
-                onClick={() => {
-                  if (document.fullscreenElement) document.exitFullscreen();
-                  setFull(false);
-                }}
-              >
-                <X size={18} />
-              </button>
-            )}
-          </header>
-          {profile && (
-            <div className="ref-profile">
-              {avatar && <img src={avatar} alt="Fictional profile" />}
-              <div>
-                <b>{profile}</b>
-                <p>{bio}</p>
-              </div>
-            </div>
-          )}
-          {tab === "Activity" ? (
-            <section className="ref-panel activity-history">
-              <h2>Simulated activity</h2>
-              {[...s.transactions, ...s.orders].slice(0, 30).map((o, i) => (
-                <div className="ref-activity-row" key={i}>
-                  <span>
-                    {o.label} · #{o.id}
-                  </span>
-                  <b>{money(o.amount)}</b>
-                  <small>{o.time}s</small>
-                  {o.effect && (
-                    <button
-                      onClick={() => {
-                        const next = undoTransaction(s, o.id);
-                        if (next === s)
-                          notify(
-                            "Cannot reverse this transaction with the current balances",
-                          );
-                        else setS(next);
-                      }}
-                    >
-                      Undo transaction
-                    </button>
-                  )}
-                  {s.orders.includes(o) && (
-                    <button
-                      onClick={() =>
-                        setS((p) => ({
-                          ...p,
-                          revenue: Math.max(0, p.revenue - o.amount),
-                          customers: Math.max(0, p.customers - 1),
-                          mrr: o.label.includes("subscription")
-                            ? Math.max(0, p.mrr - o.amount)
-                            : p.mrr,
-                          orders: p.orders.filter((x) => x.id !== o.id),
-                        }))
-                      }
-                    >
-                      Reset order
-                    </button>
-                  )}
-                </div>
-              ))}
-              {!s.transactions.length && !s.orders.length && (
-                <p>
-                  No transactions yet. Start the simulation or create a demo
-                  transaction.
-                </p>
-              )}
-            </section>
-          ) : tab === "Portfolio" || tab === "Content" ? (
-            <section className="ref-panel">
-              <h2>{market ? "Fictional holdings" : "Content performance"}</h2>
-              <div className="ref-table">
-                <div className="ref-table-row head">
-                  <span>Asset / content</span>
-                  <span>Price / views</span>
-                  <span>Shares / engagement</span>
-                  <span>Value</span>
-                </div>
-                {market
-                  ? s.prices.map((p, i) => (
-                      <div className="ref-table-row" key={i}>
-                        <b>{symbols[i]}</b>
-                        <span>{money(p)}</span>
-                        <span>{num(s.quantities[i])}</span>
-                        <b>{money(p * s.quantities[i])}</b>
-                      </div>
-                    ))
-                  : activity.map(([label, value], i) => (
-                      <div className="ref-table-row" key={i}>
-                        <span>{label}</span>
-                        <b>{value}</b>
-                        <span>{((s.likes / s.views) * 100).toFixed(2)}%</span>
-                        <span>Simulated</span>
-                      </div>
-                    ))}
-              </div>
-            </section>
-          ) : (
-            <>
-              <div className="reference-stats">
-                {d.labels.map((label, i) => (
-                  <section className="ref-stat" key={label}>
-                    <p>{label}</p>
-                    <strong>{numbers[i]}</strong>
-                    <small>{sub[i]}</small>
-                  </section>
-                ))}
-              </div>
-              <div className="reference-chart-row">
-                <section className="ref-panel reference-chart">
-                  <div className="ref-chart-heading">
-                    <h2>{d.chart}</h2>
-                    <div>
-                      {market && (
-                        <button
-                          className={candles ? "selected" : ""}
-                          onClick={() => setCandles(!candles)}
-                        >
-                          Candles
-                        </button>
-                      )}
-                      {["1D", "1W", "1M", "1Y"].map((v) => (
-                        <button
-                          className={v === range ? "selected" : ""}
-                          onClick={() => setRange(v)}
-                          key={v}
-                        >
-                          {v}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="reference-graph">
-                    {market && candles ? (
-                      <svg
-                        viewBox="0 0 760 260"
-                        className="ref-candles"
-                        preserveAspectRatio="none"
-                      >
-                        {points.map((p, i) => {
-                          const min = Math.min(...points.map((p) => p.low)),
-                            max = Math.max(...points.map((p) => p.high));
-                          const y = (v: number) =>
-                            245 - ((v - min) / (max - min || 1)) * 230;
-                          return (
-                            <g
-                              key={p.time}
-                              stroke={p.close >= p.open ? d.accent : "#ff6476"}
-                              fill={p.close >= p.open ? d.accent : "#ff6476"}
-                            >
-                              <line
-                                x1={((i + 0.5) * 760) / points.length}
-                                x2={((i + 0.5) * 760) / points.length}
-                                y1={y(p.high)}
-                                y2={y(p.low)}
-                              />
-                              <rect
-                                x={((i + 0.2) * 760) / points.length}
-                                y={Math.min(y(p.open), y(p.close))}
-                                width={(0.6 * 760) / points.length}
-                                height={Math.max(
-                                  1,
-                                  Math.abs(y(p.open) - y(p.close)),
-                                )}
-                              />
-                            </g>
-                          );
-                        })}
-                      </svg>
-                    ) : (
-                      <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart
-                          data={points}
-                          margin={{ left: 3, right: 3, top: 18, bottom: 7 }}
-                        >
-                          <CartesianGrid vertical={false} stroke="#303844" />
-                          <YAxis
-                            hide
-                            domain={["dataMin", "dataMax"]}
-                            padding={{ top: 35, bottom: 35 }}
-                          />
-                          <Tooltip
-                            labelFormatter={() => "Fictional observation"}
-                            formatter={(v) =>
-                              market ||
-                              t.kind === "business" ||
-                              t.kind === "banking"
-                                ? money(Number(v))
-                                : num(Number(v))
-                            }
-                            contentStyle={{
-                              background: "#141d2a",
-                              border: "1px solid #344355",
-                              borderRadius: 6,
-                            }}
-                          />
-                          <Area
-                            type="linear"
-                            dataKey="value"
-                            stroke={d.accent}
-                            strokeWidth={2.8}
-                            fill="transparent"
-                            isAnimationActive={running && c.enabled}
-                            animationDuration={Math.min(400, 800 / c.speed)}
-                            animationEasing="linear"
-                          />
-                        </AreaChart>
-                      </ResponsiveContainer>
-                    )}
-                  </div>
-                </section>
-                <section className="ref-panel reference-activity">
-                  <h2>Recent activity</h2>
-                  {activity.length ? (
-                    activity.map(([label, value], i) => (
-                      <div className="ref-activity-row" key={i}>
-                        <span>{label}</span>
-                        <b className={value.startsWith("-") ? "negative" : ""}>
-                          {value}
-                        </b>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="ref-empty">
-                      Orders will appear here when a simulated sale occurs.
-                    </p>
-                  )}
-                </section>
-              </div>
-            </>
-          )}
-          {t.kind === "business" && (
-            <BusinessDesk s={s} setS={setS} money={money} notify={notify} />
-          )}
-          {(market || t.kind === "banking") && (
-            <TradeDesk
-              s={s}
-              setS={setS}
-              symbols={symbols}
-              money={money}
-              notify={notify}
-              bank={t.kind === "banking"}
-            />
-          )}
-          <section className="ref-panel reference-controls">
-            <h2>Dashboard controls</h2>
-            <div className="ref-control-line">
-              <button
-                className="ref-live"
-                role="switch"
-                aria-checked={live}
-                onClick={() => setLive(!live)}
-              >
-                Live Simulation: <b>{live ? "ON" : "OFF"}</b>
-              </button>
-              <label>
-                Speed:{" "}
-                <select
-                  value={c.speed}
-                  onChange={(e) => patch("speed", +e.target.value)}
-                >
-                  {[0.5, 1, 2, 5, 10].map((v) => (
-                    <option value={v} key={v}>
-                      {v}x
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Scenario:{" "}
-                <select
-                  value={c.scenario}
-                  onChange={(e) => patch("scenario", e.target.value)}
-                >
-                  {["Slow Growth", "Normal", "Viral", "Market Crash"].map(
-                    (v) => (
-                      <option key={v}>{v}</option>
-                    ),
-                  )}
-                </select>
-              </label>
-              {!full && (
-                <button onClick={() => setEditing(true)}>Edit stats</button>
-              )}
-              <button onClick={() => setRunning((v) => !v)}>
-                {running ? <Pause size={15} /> : <Play size={15} />}{" "}
-                {running ? "Pause" : "Start / Resume"}
-              </button>
-              <button title="Reset simulation" onClick={reset}>
-                <RotateCcw size={16} />
-              </button>
-            </div>
-          </section>
-          {tab === "Analytics" && (
-            <section className="ref-panel ref-extra">
-              <h2>Detailed analytics</h2>
-              <div className="ref-detail-grid">
-                <div>
-                  <p>Simulation time</p>
-                  <strong>{s.tick}s</strong>
-                </div>
-                <div>
-                  <p>Estimated revenue</p>
-                  <strong>{money(s.revenue)}</strong>
-                </div>
-                <div>
-                  <p>Engagement rate</p>
-                  <strong>{((s.likes / s.views) * 100).toFixed(2)}%</strong>
-                </div>
-              </div>
-              {t.kind === "analytics" && (
-                <div className="ref-map">
-                  <svg viewBox="0 0 500 210">
-                    <path
-                      fill="#2d4052"
-                      d="M30 40l60-20 52 16 15 37-30 25-20 65-25-36-5-45-35-7zm150-8 44-15 10 30-30 18zm40 47 45-19 40 30-20 64-22 35-25-60zm65-45 62-20 108 24 22 42-35 20-28-17-24 43-31-34-52-16zm112 114 45-12 30 37-42 11-23-12z"
-                    />
-                    {s.visitors.map((v) => (
-                      <circle
-                        key={v.id}
-                        cx={v.x * 5}
-                        cy={v.y * 2}
-                        r="4"
-                        fill={d.accent}
-                      />
-                    ))}
-                  </svg>
-                </div>
-              )}
-              {t.kind === "streaming" &&
-                s.chat.map((message, i) => <p key={i}>{message}</p>)}
-            </section>
-          )}
-          <div className="ref-disclaimer">
-            SIMULATION · All accounts, balances and activity are fictional ·{" "}
-            {s.tick}s elapsed
-          </div>
-        </main>
+      <div className="native-capture" ref={capture}>
+        <NativeScreen
+          s={s}
+          setS={setS}
+          kind={t.kind}
+          variant={t.variant}
+          money={money}
+          notify={notify}
+          profile={profile}
+          bio={bio}
+          avatar={avatar}
+          full={full}
+          running={running}
+          setRunning={setRunning}
+          settings={c}
+          onExit={() => {
+            if (document.fullscreenElement) document.exitFullscreen();
+            setFull(false);
+          }}
+        />
       </div>
+      {!full && (
+        <div className="native-editor-bar">
+          <button onClick={() => setRunning(!running)}>
+            {running ? "Pause" : "Resume"}
+          </button>
+          <label>
+            Live Simulation{" "}
+            <input
+              type="checkbox"
+              checked={live}
+              onChange={(e) => setLive(e.target.checked)}
+            />
+          </label>
+          <label>
+            Speed{" "}
+            <select
+              value={c.speed}
+              onChange={(e) => patch("speed", +e.target.value)}
+            >
+              {[0.5, 1, 2, 5, 10].map((v) => (
+                <option key={v} value={v}>
+                  {v}×
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Scenario{" "}
+            <select
+              value={c.scenario}
+              onChange={(e) => patch("scenario", e.target.value)}
+            >
+              {["Slow Growth", "Normal", "Viral", "Market Crash"].map((v) => (
+                <option key={v}>{v}</option>
+              ))}
+            </select>
+          </label>
+          <button onClick={() => setEditing(true)}>Edit stats</button>
+        </div>
+      )}
       {message && full && (
         <div className="ref-notification" role="status">
           {message}
@@ -864,14 +458,20 @@ export function Dashboard({
                   const baseline = rebase(s);
                   localStorage.setItem(
                     storeKey + "-starting",
-                    JSON.stringify({ state: baseline, settings: c }),
+                    JSON.stringify({
+                      state: baseline,
+                      settings: c,
+                      profile,
+                      bio,
+                      avatar,
+                    }),
                   );
                   localStorage.setItem(storeKey, JSON.stringify(s));
                   onSave();
                   notify("Starting setup saved");
                 }}
               >
-                Save Starting Setup
+                Save Setup
               </button>
               <button
                 onClick={() => {
@@ -885,15 +485,19 @@ export function Dashboard({
                     }
                     setS(saved.state);
                     setSettings(saved.settings);
+                    setCurrency(saved.settings.currency);
+                    setProfile(saved.profile ?? profile);
+                    setBio(saved.bio ?? bio);
+                    setAvatar(saved.avatar ?? avatar);
                     notify("Restarted from saved starting setup");
                   } catch {
                     notify("Could not load starting setup");
                   }
                 }}
               >
-                Restart From Saved Setup
+                Reset Activity
               </button>
-              <button onClick={reset}>Reset Simulation</button>
+              <button onClick={reset}>Reset Everything</button>
             </div>
             <p>All changes apply to fictional data only.</p>
             <label>
@@ -922,6 +526,34 @@ export function Dashboard({
                 }}
               />
             </label>
+            {market && (
+              <label>
+                Portfolio asset value
+                <input
+                  type="number"
+                  min="0"
+                  step=".01"
+                  value={Number(s.value.toFixed(2))}
+                  onChange={(e) => {
+                    const target = Number(e.target.value);
+                    if (!Number.isFinite(target) || target < 0) return;
+                    const quantities =
+                      s.value > 0
+                        ? s.quantities.map((q) => (q * target) / s.value)
+                        : s.quantities.map((_, i) =>
+                            i === 0 ? target / s.prices[0] : 0,
+                          );
+                    setS((p) => ({
+                      ...p,
+                      quantities,
+                      value: target,
+                      initial: target,
+                      startingWealth: target + p.cash,
+                    }));
+                  }}
+                />
+              </label>
+            )}
             <label>
               Savings balance
               <input
@@ -1216,6 +848,60 @@ export function Dashboard({
                 </button>
               </>
             )}
+            <label>
+              Historical chart values (comma-separated; 2–64 values)
+              <textarea
+                value={chartDraft}
+                onChange={(e) => setChartDraft(e.target.value)}
+                placeholder="120, 125, 119, 130"
+              />
+            </label>
+            <button
+              onClick={() => {
+                const values = chartDraft
+                  .split(",")
+                  .map((v) => Number(v.trim()));
+                if (
+                  values.length < 2 ||
+                  values.length > 64 ||
+                  values.some((v) => !Number.isFinite(v) || v < 0)
+                ) {
+                  notify("Use 2–64 nonnegative numeric chart values");
+                  return;
+                }
+                const last = market
+                  ? s.value
+                  : t.kind === "banking"
+                    ? s.cash
+                    : t.kind === "business"
+                      ? s.revenue
+                      : t.kind === "instagram"
+                        ? s.followers
+                        : s.views;
+                values[values.length - 1] = last;
+                setS((p) => ({
+                  ...p,
+                  assetHistory: market
+                    ? p.prices.map((price) =>
+                        values.map((v) => (v / (last || 1)) * price),
+                      )
+                    : p.assetHistory,
+                  history: values.map((v, i) => ({
+                    time: i - values.length + 1,
+                    value: v,
+                    open: i ? values[i - 1] : v,
+                    close: v,
+                    high: Math.max(v, i ? values[i - 1] : v),
+                    low: Math.min(v, i ? values[i - 1] : v),
+                  })),
+                }));
+                notify(
+                  "Chart history updated; latest point matches current total",
+                );
+              }}
+            >
+              Apply chart data
+            </button>
             <div className="editor-actions">
               <button onClick={reset}>Reset all</button>
               <button onClick={onSave}>Save dashboard</button>

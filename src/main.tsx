@@ -74,6 +74,7 @@ const cats = [
 ];
 const templates: {
   kind: Kind;
+  variant?: string;
   name: string;
   desc: string;
   tag: string;
@@ -185,6 +186,51 @@ const allTemplates = templates
     ].map((t, j) => ({ ...t, id: `${i}-${j}` })),
   )
   .sort((a, b) => Number(a.id.split("-")[1]) - Number(b.id.split("-")[1]));
+const cryptoVariants = [
+  {
+    variant: "discovery",
+    name: "Token Discovery",
+    desc: "A high-density fictional token market.",
+    color: "#42e3aa",
+    icon: Activity,
+  },
+  {
+    variant: "phantom",
+    name: "Phantom-style Wallet",
+    desc: "A compact purple wallet simulation.",
+    color: "#b69aff",
+    icon: Bitcoin,
+  },
+  {
+    variant: "exodus",
+    name: "Exodus-style Portfolio",
+    desc: "A spacious desktop asset workspace.",
+    color: "#9e79ee",
+    icon: Gem,
+  },
+  {
+    variant: "trust",
+    name: "Trust-style Wallet",
+    desc: "A blue, light-first wallet simulation.",
+    color: "#2875f0",
+    icon: Landmark,
+  },
+  {
+    variant: "binance",
+    name: "Binance-style Exchange",
+    desc: "A dense trading terminal with limit orders.",
+    color: "#f2c52d",
+    icon: TrendingUp,
+  },
+];
+for (const variant of cryptoVariants)
+  allTemplates.push({
+    ...variant,
+    id: "crypto-" + variant.variant,
+    kind: "crypto",
+    tag: "NEW",
+  } as (typeof allTemplates)[number]);
+const libraryTemplates = allTemplates.filter((t) => !/-[12]$/.test(t.id));
 const compact = (n: number) =>
   Intl.NumberFormat("en", {
     notation: "compact",
@@ -197,129 +243,22 @@ function read<T>(key: string, fallback: T): T {
     return fallback;
   }
 }
-function Spark({
-  color = "#b1ed80",
-  seed = 1,
-}: {
-  color?: string;
-  seed?: number;
-}) {
-  let v = 45;
-  const pts = Array.from({ length: 40 }, (_, i) => {
-    v += Math.sin(i * seed + 1) * 9 - 1.2;
-    return `${i * 8},${Math.max(8, Math.min(86, v))}`;
-  }).join(" ");
-  return (
-    <svg className="spark" viewBox="0 0 312 100" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`g${seed}`} x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor={color} stopOpacity=".16" />
-          <stop offset="1" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path
-        d={`M0,100 L${pts.replaceAll(" ", " L")} L312,100 Z`}
-        fill={`url(#g${seed})`}
-      />
-      <polyline points={pts} fill="none" stroke={color} strokeWidth="1.8" />
-    </svg>
-  );
-}
 function Preview({
   kind,
-  color,
-  index,
+  variant,
 }: {
   kind: Kind;
+  variant?: string;
   color: string;
   index: number;
 }) {
   return (
-    <div
-      className={`preview ${kind}`}
-      style={{ "--accent": color } as React.CSSProperties}
-    >
-      <div className="mini-nav">
-        <span className="mini-logo">
-          {kind === "instagram"
-            ? "◎"
-            : kind === "business"
-              ? "◈"
-              : kind === "youtube"
-                ? "▶"
-                : "◒"}{" "}
-          <b>
-            {kind === "stocks"
-              ? "folio"
-              : kind === "instagram"
-                ? "insights"
-                : kind === "business"
-                  ? "studio"
-                  : kind === "crypto"
-                    ? "coinbase"
-                    : kind === "youtube"
-                      ? "Studio"
-                      : "overview"}
-          </b>
-        </span>
-        <span>
-          Overview　 Analytics　 <i>●</i>
-        </span>
-      </div>
-      <div className="mini-body">
-        <div className="mini-title">
-          {kind === "stocks" || kind === "crypto"
-            ? "Total portfolio value"
-            : kind === "instagram"
-              ? "Total followers"
-              : kind === "business"
-                ? "Total revenue"
-                : kind === "youtube"
-                  ? "Channel views"
-                  : kind === "banking"
-                    ? "Available balance"
-                    : "Your overview"}
-        </div>
-        <div className="mini-value">
-          {kind === "instagram"
-            ? "128,450"
-            : kind === "youtube"
-              ? "2,847,280"
-              : kind === "streaming"
-                ? "1,248"
-                : kind === "analytics"
-                  ? "24,892"
-                  : "$847,392"}
-          <small>
-            {["stocks", "crypto", "business"].includes(kind) ? ".84" : ""}
-          </small>
-          <span>↗ 12.8%</span>
-        </div>
-        {kind === "business" ? (
-          <div className="mini-bars">
-            {Array.from({ length: 27 }, (_, i) => (
-              <i key={i} style={{ height: `${20 + ((i * 13) % 60) + i}px` }} />
-            ))}
-          </div>
-        ) : (
-          <Spark color={color} seed={index + 1} />
-        )}
-        <div className="mini-bottom">
-          <span>
-            {kind === "instagram" ? "Profile visits" : "Today’s return"}
-            <b>{kind === "instagram" ? "24,892" : "+$12,847.32"}</b>
-          </span>
-          <span>
-            {kind === "instagram" ? "Engagement rate" : "Total return"}
-            <b>{kind === "instagram" ? "4.82%" : "+25.37%"}</b>
-          </span>
-          <span>
-            {kind === "business" ? "Orders" : "Performance"}
-            <b>{kind === "business" ? "1,284" : "+18.42%"}</b>
-          </span>
-        </div>
-      </div>
-      <span className="mini-simulation">FICTIONAL DATA</span>
+    <div className="preview actual-preview">
+      <img
+        src={`/previews/${variant || kind}.webp`}
+        alt={`${variant || kind} simulation preview`}
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -329,6 +268,9 @@ type Saved = {
   name: string;
   settings: Settings;
   state?: State;
+  profile?: string;
+  bio?: string;
+  avatar?: string;
 };
 function App() {
   const [page, setPage] = useState("all");
@@ -371,7 +313,7 @@ function App() {
       f.includes(id) ? f.filter((x) => x !== id) : [...f, id],
     );
   const current = allTemplates.find((t) => t.id === active);
-  const list = allTemplates
+  const list = libraryTemplates
     .filter(
       (t) =>
         (page === "all" ||
@@ -397,6 +339,14 @@ function App() {
         name: `${current.name} ${s.length + 1}`,
         settings: { ...settings },
         state: read("larp-dashboard-" + current.id, undefined),
+        profile:
+          localStorage.getItem("larp-dashboard-" + current.id + "-profile") ||
+          "",
+        bio:
+          localStorage.getItem("larp-dashboard-" + current.id + "-bio") || "",
+        avatar:
+          localStorage.getItem("larp-dashboard-" + current.id + "-avatar") ||
+          "",
       },
     ]);
     setNotice("Dashboard saved to your collection");
@@ -438,7 +388,7 @@ function App() {
           }}
         >
           <LayoutGrid size={17} /> All simulations{" "}
-          <span className="count">33</span>
+          <span className="count">{libraryTemplates.length}</span>
         </button>
         <button
           className={`nav ${page === "favorites" ? "active" : ""}`}
@@ -490,7 +440,7 @@ function App() {
               onClick={() => {
                 setPage("all");
                 setActive(null);
-                setSearch("Professional");
+                setSearch("");
               }}
             >
               Explore presets <ArrowUpRight size={14} />
@@ -756,6 +706,17 @@ function App() {
                               "larp-dashboard-" + s.template,
                               JSON.stringify(s.state),
                             );
+                          for (const field of [
+                            "profile",
+                            "bio",
+                            "avatar",
+                          ] as const) {
+                            if (s[field] !== undefined)
+                              localStorage.setItem(
+                                "larp-dashboard-" + s.template + "-" + field,
+                                s[field]!,
+                              );
+                          }
                           setActive(s.template);
                         }}
                       >
@@ -809,7 +770,12 @@ function App() {
                       aria-label={`Launch ${t.name}`}
                       onClick={() => setActive(t.id)}
                     >
-                      <Preview kind={t.kind} color={t.color} index={i} />
+                      <Preview
+                        kind={t.kind}
+                        color={t.color}
+                        index={i}
+                        variant={t.variant}
+                      />
                       <div className="launch-overlay">
                         <Play size={16} fill="currentColor" /> Launch simulation
                       </div>

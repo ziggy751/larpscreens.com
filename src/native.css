@@ -1,0 +1,6089 @@
+/* Shared primitives only. Each application below owns its navigation and layout. */
+.native-capture {
+  min-height: calc(100vh - 125px);
+}
+.native-capture > div {
+  position: relative;
+  min-height: calc(100vh - 125px);
+}
+.native-capture main {
+  max-width: none;
+  margin: 0;
+}
+.native-capture h1 {
+  line-height: 1.2;
+}
+.native-capture button,
+.native-capture input,
+.native-capture select {
+  font-size: 12px;
+}
+.native-capture button:focus-visible {
+  outline: 2px solid currentColor;
+}
+.native-capture button {
+  font-weight: 500;
+}
+.native-stamp {
+  position: absolute;
+  right: 16px;
+  top: 13px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  border: 1px solid #68747c50;
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: #18222be8;
+  color: #c4d8d8;
+}
+.native-stamp button {
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 16px;
+  display: none;
+}
+.ref-fullscreen .native-stamp button {
+  display: block;
+}
+.native-plot {
+  width: 100%;
+  min-width: 0;
+}
+.plot-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 35px;
+}
+.plot-tools > div {
+  display: flex;
+  gap: 3px;
+}
+.plot-tools button {
+  background: none;
+  border: 0;
+  border-radius: 3px;
+  padding: 5px 7px;
+  font-size: 10px;
+  color: inherit;
+  opacity: 0.55;
+}
+.plot-tools button.selected {
+  opacity: 1;
+  background: #8893a01c;
+}
+.plot-tools small {
+  margin-left: auto;
+  opacity: 0.45;
+  font-size: 8px;
+}
+.native-graph {
+  height: 275px;
+  width: 100%;
+  color: inherit;
+}
+.native-graph > svg {
+  width: 100%;
+  height: 100%;
+}
+.native-plot.small .native-graph {
+  height: 120px;
+}
+.plot-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  opacity: 0.4;
+  padding: 9px 0;
+}
+.native-asset-icon {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+.native-ledger {
+  padding: 20px;
+  overflow: auto;
+}
+.ledger-head,
+.ledger-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.6fr;
+  gap: 15px;
+  padding: 18px 0;
+  border-bottom: 1px solid #8493a32b;
+  align-items: center;
+  min-width: 530px;
+}
+.ledger-head {
+  font-size: 10px;
+  opacity: 0.5;
+}
+.ledger-row {
+  font-size: 12px;
+}
+.ledger-row > span small {
+  display: block;
+  opacity: 0.5;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.ledger-row b {
+  font-weight: 500;
+}
+.ledger-row > small {
+  opacity: 0.6;
+}
+.ledger-row button {
+  background: none;
+  border: 1px solid #8393a348;
+  padding: 6px;
+  font-size: 10px;
+}
+.native-empty {
+  padding: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: inherit;
+  opacity: 0.6;
+}
+.native-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: #030509b8;
+  backdrop-filter: blur(7px);
+  padding: 25px;
+}
+.native-dialog {
+  position: relative;
+  max-height: 85vh;
+  overflow: auto;
+  width: min(720px, 95vw);
+  background: #25232e;
+  border: 1px solid #ffffff20;
+  border-radius: 18px;
+  padding: 32px;
+  color: #f4f2fa;
+}
+.native-dialog h2 {
+  font-size: 22px;
+  margin: 15px 0;
+}
+.native-dialog h1 {
+  font-size: 33px;
+}
+.native-dialog p {
+  font-size: 12px;
+  color: #a9a4b6;
+}
+.dialog-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: 0;
+  background: none;
+  padding: 5px;
+  color: inherit;
+}
+.native-primary {
+  background: #a58df3;
+  border: 0;
+  color: #181329;
+}
+.native-editor-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #141c25;
+  border-top: 1px solid #32414d;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+}
+.native-editor-bar label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+}
+.native-editor-bar select {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 6px;
+}
+.native-editor-bar input {
+  margin: 0;
+}
+.simulation-presenting {
+  overflow: hidden;
+}
+.simulation-presenting > .app > .sidebar,
+.simulation-presenting .topbar {
+  visibility: hidden;
+}
+.ref-fullscreen {
+  z-index: 1000 !important;
+}
+.ref-fullscreen .native-capture > div {
+  min-height: 100dvh;
+}
+.ref-fullscreen .ref-tools,
+.ref-fullscreen .native-editor-bar {
+  display: none !important;
+}
+.native-capture .trade-desk {
+  margin: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid #8995a42c;
+  padding: 18px;
+}
+.native-capture .trade-fields input,
+.native-capture .trade-fields select {
+  color: inherit;
+  background: #8995a414;
+  border-color: #8995a43b;
+}
+.native-capture .trade-fields label,
+.native-capture .trade-summary {
+  color: inherit;
+  opacity: 0.85;
+}
+.native-capture .trade-summary b {
+  color: inherit;
+}
+.native-capture .desk-tabs button {
+  color: inherit;
+}
+.native-capture .desk-tabs button.selected {
+  color: var(--accent, #b699fa);
+  border-color: var(--accent, #b699fa);
+}
+.native-capture .trade-summary button {
+  background: var(--accent, #a88cef);
+  color: #10131a;
+}
+.native-capture .ref-activity-row b {
+  color: inherit;
+}
+/* Compact wallets: purple floating extension and blue light wallet. */
+.native-wallet-stage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 42px 24px;
+  min-height: 900px !important;
+}
+.phantom-stage {
+  background: #191624;
+  color: #f6f4fb;
+  --accent: #b198fc;
+}
+.native-wallet {
+  width: 480px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.phantom-wallet {
+  background: #27242f;
+  border-radius: 28px;
+  padding: 26px 32px 16px;
+}
+.native-wallet > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.native-wallet > header select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 5px;
+}
+.native-wallet > header option {
+  color: #201e29;
+  background: #f0edf7;
+}
+.native-wallet > header button {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+.ghost-mark {
+  color: #b79afe;
+  font-size: 25px;
+}
+.wallet-balance {
+  text-align: center;
+  padding: 43px 0 25px;
+}
+.wallet-balance > span {
+  font-size: 12px;
+  color: #aaa2b7;
+}
+.wallet-balance h1 {
+  font-size: 43px;
+  font-weight: 650;
+  letter-spacing: -1.5px;
+  margin: 24px 0 19px;
+  font-variant-numeric: tabular-nums;
+}
+.wallet-balance p {
+  color: #78d9ba;
+  font-size: 13px;
+  margin: 0;
+}
+.wallet-balance small {
+  font-size: 11px;
+}
+.wallet-actions {
+  display: flex;
+  gap: 10px;
+  margin: 17px 0 32px;
+}
+.wallet-actions button {
+  flex: 1;
+  border: 0;
+  border-radius: 14px;
+  background: #393242;
+  color: #e8e2f1;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 8px;
+  font-weight: 400;
+}
+.wallet-actions button:hover {
+  background: #493e5e;
+}
+.wallet-tabs {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ffffff10;
+}
+.wallet-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 10px 0;
+  background: none;
+  color: #918b9e;
+}
+.wallet-tabs button.selected {
+  color: #e8e2ef;
+  border-color: #b59cf9;
+}
+.wallet-tabs select {
+  margin-left: auto;
+  max-width: 145px;
+  font-size: 10px;
+  background: none;
+  border: 0;
+  color: inherit;
+}
+.wallet-search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #ffffff05;
+  border: 1px solid #ffffff09;
+  border-radius: 9px;
+  padding: 8px 10px;
+  color: #85808e;
+}
+.wallet-search input {
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  outline: none;
+  font-size: 11px;
+}
+.wallet-token {
+  display: flex;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 20px 5px;
+  gap: 15px;
+  text-align: left;
+  color: inherit;
+}
+.wallet-token:hover {
+  background: #ffffff07;
+}
+.wallet-token > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.wallet-token > div:last-child {
+  margin-left: auto;
+  text-align: right;
+}
+.wallet-token b {
+  font-size: 15px;
+}
+.wallet-token small {
+  font-size: 10px;
+  color: #a39bab;
+}
+.wallet-bottom {
+  margin: 15px -32px 5px;
+  padding: 17px 32px 0;
+  border-top: 1px solid #ffffff0c;
+  justify-content: space-between;
+  display: flex;
+}
+.wallet-bottom button {
+  background: none;
+  border: 0;
+  color: #8b849a;
+}
+.wallet-bottom button:hover {
+  color: #bd9bff;
+}
+.wallet-fictional {
+  display: block;
+  text-align: center;
+  font-size: 8px;
+  color: #776c87;
+  margin-top: 15px;
+}
+.native-wallet .native-ledger {
+  padding: 0;
+}
+.native-wallet .ledger-row,
+.native-wallet .ledger-head {
+  min-width: 380px;
+  grid-template-columns: 1.7fr 1fr 0.7fr 0.6fr;
+  gap: 9px;
+  font-size: 10px;
+}
+.wallet-trade .trade-fields {
+  grid-template-columns: 1fr 1fr;
+}
+.wallet-trade .desk-header h2 {
+  font-size: 15px;
+}
+.trust-stage {
+  background: #e9eff9;
+  color: #1c2a44;
+  --accent: #1c68ed;
+}
+.trust-wallet {
+  border-radius: 24px;
+  background: #fff;
+  padding: 0 30px 16px;
+  box-shadow: 0 5px 30px #27457706;
+}
+.trust-wallet > header {
+  margin: 0 -30px;
+  padding: 23px 26px;
+  background: #1b63dc;
+  color: #fff;
+}
+.trust-wallet .wallet-balance {
+  text-align: left;
+  padding: 39px 7px 23px;
+}
+.trust-wallet .wallet-balance > span {
+  color: #7788a5;
+}
+.trust-wallet .wallet-balance h1 {
+  font-size: 40px;
+}
+.trust-wallet .wallet-balance p {
+  color: #00a980;
+}
+.trust-wallet .wallet-actions button {
+  background: #eaf1ff;
+  color: #1767e9;
+  font-weight: 600;
+}
+.trust-wallet .wallet-tabs {
+  border-color: #e5eaf2;
+}
+.trust-wallet .wallet-tabs button.selected {
+  color: #1d67da;
+  border-color: #1d67da;
+}
+.trust-wallet .wallet-search {
+  background: #f6f8fc;
+  color: #7a8ba7;
+  border-color: #ecf0f7;
+}
+.trust-wallet .wallet-token {
+  border-bottom: 1px solid #e9edf3;
+  border-radius: 0;
+}
+.trust-wallet .wallet-token small {
+  color: #8291a9;
+}
+.trust-wallet .wallet-bottom {
+  border-color: #e5eaf2;
+}
+.trust-wallet .wallet-bottom button {
+  color: #8195b3;
+}
+.trust-wallet .wallet-fictional {
+  color: #a0acc1;
+}
+/* Exodus: wide allocation-focused desktop portfolio. */
+.exodus-app {
+  background: #15181e;
+  color: #e3e6ef;
+  padding: 0 34px 35px;
+  --accent: #aa82f0;
+}
+.exodus-header {
+  height: 83px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  border-bottom: 1px solid #343944;
+  padding-right: 170px;
+}
+.exodus-header strong {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.exodus-header strong > span {
+  color: #9f7be8;
+  font-size: 28px;
+  margin-right: 15px;
+}
+.exodus-header nav {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+.exodus-header nav button {
+  background: none;
+  border: 0;
+  color: #969dab;
+  padding: 10px 0;
+  font-size: 13px;
+}
+.exodus-header nav button.selected {
+  color: #c7a3ff;
+}
+.exodus-header > span {
+  font-size: 10px;
+  color: #687284;
+}
+.exodus-overview {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  align-items: center;
+  gap: 55px;
+  padding: 48px 30px 38px;
+}
+.allocation-ring {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  padding: 18px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  transform: rotate(-45deg);
+}
+.allocation-ring > div {
+  border-radius: 50%;
+  background: #15181e;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: rotate(45deg);
+  text-align: center;
+}
+.allocation-ring small {
+  color: #8c94a4;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+}
+.allocation-ring h1 {
+  font-size: 29px;
+  margin: 18px 0 10px;
+}
+.allocation-ring p {
+  font-size: 10px;
+  color: #9299a7;
+  margin: 0;
+}
+.exodus-performance > span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #6e7889;
+}
+.exodus-performance h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.exodus-performance .native-graph {
+  height: 180px;
+}
+.exodus-summary {
+  display: flex;
+  gap: 35px;
+  font-size: 10px;
+  color: #7e8a9c;
+  margin-top: 15px;
+}
+.exodus-summary b {
+  display: block;
+  font-size: 17px;
+  font-weight: 400;
+  color: #dfe6f1;
+  margin-top: 8px;
+}
+.exodus-assets header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.exodus-assets h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+.exodus-assets header > span {
+  font-size: 10px;
+  color: #677387;
+}
+.exodus-asset {
+  display: grid;
+  grid-template-columns: 38px 0.6fr 1fr 1fr 1fr 1.1fr 20px;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-top: 1px solid #333944;
+  border-radius: 0;
+  padding: 19px 15px;
+  color: #d3dbe6;
+}
+.exodus-asset:hover,
+.exodus-asset.selected {
+  background: #ffffff05;
+}
+.exodus-asset strong {
+  text-align: right;
+  font-size: 16px;
+}
+.exodus-asset > span:nth-child(4) {
+  position: relative;
+  font-size: 10px;
+  color: #8a9aaa;
+  padding-bottom: 8px;
+}
+.exodus-asset i {
+  display: block;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.exodus-asset .native-asset-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+}
+.exodus-detail {
+  margin-top: 30px;
+  border: 1px solid #343949;
+  padding: 25px;
+}
+.exodus-detail .native-graph {
+  height: 200px;
+}
+.exodus-exchange {
+  max-width: 850px;
+  margin: 80px auto;
+}
+.exodus-exchange h1 {
+  text-align: center;
+  font-size: 33px;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+.exodus-app > .native-ledger {
+  margin-top: 30px;
+}
+/* Token discovery: three dense, independent listing columns. */
+.discovery-app {
+  background: #080f0d;
+  color: #e3eee9;
+  --accent: #49dba6;
+  padding-bottom: 40px;
+}
+.discovery-header {
+  height: 66px;
+  background: #101c18;
+  border-bottom: 1px solid #1f3028;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 35px;
+  padding-right: 185px;
+}
+.discovery-header > strong {
+  font-size: 19px;
+  color: #47dfaa;
+  letter-spacing: 0.3px;
+}
+.discovery-header small {
+  font-size: 13px;
+}
+.discovery-header nav {
+  display: flex;
+  gap: 19px;
+  margin-left: auto;
+}
+.discovery-header nav button {
+  background: none;
+  border: 0;
+  font-size: 12px;
+  color: #98aca0;
+  padding: 10px 0;
+}
+.discovery-header nav button.selected {
+  color: #59e0b0;
+}
+.market-pulse {
+  font-size: 8px;
+  color: #50c591;
+  white-space: nowrap;
+}
+.discovery-tools {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid #19271f;
+}
+.discovery-tools > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #283b30;
+  background: #101b15;
+  padding: 9px;
+  color: #6a8875;
+  border-radius: 5px;
+  width: 300px;
+}
+.discovery-tools input {
+  background: none;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  font-size: 11px;
+  color: #c7d9ca;
+  outline: none;
+}
+.discovery-tools select {
+  background: #101b15;
+  border-color: #283b30;
+  color: #a1b8a8;
+  padding: 8px;
+  font-size: 11px;
+}
+.discovery-tools > span {
+  margin-left: auto;
+  font-size: 9px;
+  color: #688b77;
+}
+.discovery-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 20px 22px;
+}
+.discovery-columns > section {
+  background: #101b16;
+  border: 1px solid #1b2b22;
+  border-radius: 10px;
+  padding: 12px;
+  min-width: 0;
+}
+.discovery-columns > section > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 3px 16px;
+}
+.discovery-columns h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.discovery-columns header > span {
+  margin-left: auto;
+  font-size: 9px;
+  color: #5b826c;
+}
+.token-listing {
+  position: relative;
+  border-radius: 7px;
+  background: #192720;
+  margin-bottom: 11px;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+.token-listing:hover {
+  border-color: #3c7355;
+}
+.token-open {
+  background: none;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 17px 11px;
+  color: #dcebe2;
+}
+.token-open:hover {
+  background: #23362b;
+}
+.token-art {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #ae67d7;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  color: #f9deff;
+}
+.token-art-1 {
+  background: #f1b544;
+  color: #5c3b0a;
+}
+.token-art-2 {
+  background: #55b6cc;
+  color: #163c46;
+}
+.token-art-3 {
+  background: #6fc087;
+  color: #173e25;
+}
+.token-art-4 {
+  background: #c45c97;
+  color: #48213a;
+}
+.token-open > div:last-child {
+  flex: 1;
+  min-width: 0;
+}
+.token-listing h3 {
+  font-size: 13px;
+  margin: 0 20px 8px 0;
+  font-weight: 600;
+}
+.token-listing h3 small {
+  font-size: 9px;
+  color: #718e7b;
+  font-weight: 400;
+  margin-left: 4px;
+}
+.token-listing p {
+  font-size: 9px;
+  margin-bottom: 9px;
+  color: #8bac96;
+}
+.token-age {
+  color: #59d9a1;
+}
+.token-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 7px;
+  color: #6c927b;
+}
+.token-metrics b {
+  font-size: 9px;
+  color: #b1d0bc;
+  font-weight: 500;
+}
+.bonding {
+  height: 3px;
+  background: #0e1c14;
+  margin-top: 12px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bonding i {
+  display: block;
+  height: 100%;
+  background: #418c62;
+}
+.token-star {
+  position: absolute;
+  right: 6px;
+  top: 8px;
+  background: none;
+  border: 0;
+  padding: 4px;
+  color: #8ed0a8;
+}
+.discovery-status {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 7px 20px;
+  background: #102219;
+  color: #73a98a;
+  font-size: 8px;
+  letter-spacing: 0.6px;
+  z-index: 5;
+}
+.token-detail {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+.token-detail > button {
+  background: #192d21;
+  border-color: #34573f;
+  color: #bde2cc;
+  font-size: 10px;
+}
+.token-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+.token-detail-title h1 {
+  font-size: 23px;
+  margin: 0;
+}
+.token-detail-title strong {
+  margin-left: auto;
+  color: #57d7a1;
+  font-size: 25px;
+}
+.token-detail .native-graph {
+  height: 350px;
+}
+.token-detail .trade-desk {
+  margin-top: 20px;
+}
+/* Binance-style terminal: fixed-density grid and resizable centre chart. */
+.terminal-app {
+  background: #0b0d10;
+  color: #dbe0e6;
+  --accent: #f2c42a;
+}
+.terminal-header {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #17191e;
+  padding: 0 24px;
+  padding-right: 190px;
+}
+.terminal-header strong {
+  font-size: 18px;
+  color: #f0c32b;
+  letter-spacing: 0.6px;
+}
+.terminal-header strong > span {
+  margin-right: 9px;
+}
+.terminal-header nav {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+.terminal-header nav button {
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  color: #b5b8c0;
+  font-size: 12px;
+}
+.terminal-header nav button.selected {
+  color: #f4cb42;
+}
+.terminal-header > span {
+  font-size: 8px;
+  color: #6c727e;
+}
+.terminal-grid {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 285px;
+  gap: 8px;
+  padding: 9px;
+  align-items: stretch;
+}
+.terminal-watch,
+.terminal-center,
+.terminal-ticket {
+  background: #171a20;
+  min-width: 0;
+}
+.terminal-watch {
+  padding: 15px;
+}
+.terminal-watch h3 {
+  font-size: 13px;
+  margin: 3px 0 16px;
+}
+.terminal-search {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  background: #22252d;
+  color: #6b727e;
+  border-radius: 4px;
+  padding: 7px;
+}
+.terminal-search input {
+  padding: 0;
+  border: 0;
+  background: none;
+  width: 100%;
+  outline: none;
+  font-size: 10px;
+  color: #c5c9d1;
+}
+.pair-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #6b7381;
+  margin: 15px 0 7px;
+}
+.terminal-watch > button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 10px;
+  padding: 12px 4px;
+  border: 0;
+  background: none;
+  border-radius: 2px;
+}
+.terminal-watch > button > span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.terminal-watch > button b {
+  color: #42be99;
+  font-size: 9px;
+  font-weight: 400;
+}
+.terminal-watch > button.selected {
+  background: #272a31;
+  color: #f1cc45;
+}
+.order-book {
+  margin-top: 30px;
+  border-top: 1px solid #2a2e38;
+  padding-top: 20px;
+}
+.order-book h3 {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-book h3 small {
+  color: #5d6571;
+  font-size: 6px;
+}
+.book-columns,
+.book-row {
+  display: flex;
+  justify-content: space-between;
+  font:
+    9px ui-monospace,
+    monospace;
+  position: relative;
+  padding: 5px 0;
+}
+.book-columns {
+  font-size: 7px;
+  color: #69727e;
+  margin-bottom: 8px;
+}
+.book-row > span {
+  position: relative;
+  z-index: 1;
+}
+.book-row i {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  height: 80%;
+  background: #9d3b4920;
+}
+.book-row.ask {
+  color: #e16c7f;
+}
+.book-row.bid {
+  color: #3db89b;
+}
+.book-row.bid i {
+  background: #1a8a6320;
+}
+.order-book h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #42bf9c;
+  margin: 13px 0;
+}
+.pair-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 17px;
+  border-bottom: 1px solid #2a2d35;
+  flex-wrap: wrap;
+}
+.pair-banner h1 {
+  font-size: 19px;
+  margin: 0;
+}
+.pair-banner > strong {
+  color: #36bd9a;
+  font-size: 17px;
+}
+.pair-banner > span {
+  font-size: 8px;
+  color: #6b7583;
+}
+.pair-banner > span b {
+  display: block;
+  color: #c6cbd4;
+  font-size: 10px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.terminal-resize {
+  resize: vertical;
+  overflow: auto;
+  min-height: 330px;
+  height: 410px;
+  max-height: 800px;
+  padding: 10px 17px;
+  border-bottom: 1px solid #2b303a;
+}
+.terminal-resize .native-plot {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.terminal-resize .native-graph {
+  height: auto;
+  flex: 1;
+  min-height: 220px;
+}
+.terminal-portfolio {
+  padding: 18px;
+  border-top: 8px solid #0b0d10;
+}
+.terminal-portfolio h3 {
+  font-size: 12px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.terminal-portfolio h3 span {
+  float: right;
+  color: #f1cd3f;
+  font-weight: 400;
+}
+.terminal-recent {
+  border-top: 8px solid #0b0d10;
+  padding: 18px;
+}
+.terminal-recent h3 {
+  font-size: 12px;
+}
+.terminal-recent > div {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 9px;
+  border-top: 1px solid #2e323a;
+  padding: 10px 0;
+}
+.terminal-ticket {
+  padding: 17px;
+}
+.terminal-ticket .trade-desk {
+  padding: 0;
+  border: 0;
+}
+.terminal-ticket .desk-header {
+  display: block;
+}
+.terminal-ticket .desk-header h2 {
+  font-size: 15px;
+  margin: 4px 0 8px;
+  text-transform: uppercase;
+}
+.terminal-ticket .desk-header > span {
+  font-size: 6px;
+}
+.terminal-ticket .desk-tabs {
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.terminal-ticket .desk-tabs button {
+  font-size: 10px;
+}
+.terminal-ticket .trade-fields {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.terminal-ticket .trade-fields label {
+  margin: 11px 0;
+  font-size: 10px;
+}
+.terminal-ticket .trade-fields label:first-child {
+  display: none;
+}
+.terminal-ticket .trade-summary {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  margin-top: 15px;
+  font-size: 10px;
+}
+.terminal-ticket .trade-summary > span:first-child {
+  line-height: 2;
+}
+.terminal-ticket .trade-summary button {
+  width: 100%;
+  padding: 14px;
+  color: #201b08;
+  background: #efc32d;
+  font-size: 13px;
+}
+.terminal-ticket > section {
+  border-top: 1px solid #31343e;
+  margin-top: 35px;
+  padding-top: 20px;
+}
+.terminal-ticket > section h3 {
+  font-size: 12px;
+}
+.terminal-ticket > section p {
+  font-size: 9px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #757e8c;
+}
+.terminal-ticket > section b {
+  color: #bac1cd;
+  font-weight: 400;
+}
+.terminal-orders {
+  padding: 30px;
+}
+.terminal-orders h1 {
+  font-size: 24px;
+}
+.terminal-orders h1 small {
+  font-size: 20px;
+  color: #e4bc35;
+  margin-left: 30px;
+}
+.exchange-holdings {
+  max-width: 850px;
+}
+.exchange-holdings > button {
+  display: flex;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #30343d;
+  border-radius: 0;
+  gap: 15px;
+  text-align: left;
+  padding: 20px;
+}
+.exchange-holdings > button > span {
+  font-size: 14px;
+}
+.exchange-holdings > button small {
+  display: block;
+  font-size: 10px;
+  color: #74808f;
+  margin-top: 7px;
+}
+.exchange-holdings b {
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* Creator Studio: white, content-led workspace with realtime rail. */
+.studio-app {
+  background: #fafafa;
+  color: #242424;
+  --accent: #278cc7;
+  font-family: Arial, sans-serif;
+}
+.studio-header {
+  height: 65px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0 27px;
+  padding-right: 195px;
+}
+.studio-header > strong {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+.studio-header > strong > span {
+  background: #f04444;
+  width: 30px;
+  height: 21px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+}
+.studio-header > div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #ccc;
+  width: 40%;
+  padding: 9px 13px;
+  margin: auto;
+  color: #777;
+}
+.studio-header input {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 11px;
+  width: 100%;
+  color: #333;
+}
+.studio-avatar {
+  width: 30px;
+  height: 30px;
+  background: #637d89;
+  color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+.studio-layout {
+  display: flex;
+}
+.studio-sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  min-height: 850px;
+}
+.channel-identity {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 20px 25px;
+  gap: 10px;
+}
+.channel-art {
+  border-radius: 50%;
+  height: 88px;
+  width: 88px;
+  background: #3b5961;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+.channel-identity img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.channel-identity b {
+  font-size: 12px;
+  font-weight: 500;
+}
+.channel-identity > span {
+  font-size: 11px;
+  color: #777;
+}
+.studio-sidebar > button {
+  background: none;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 18px 22px;
+  gap: 20px;
+  color: #666;
+  font-size: 12px;
+}
+.studio-sidebar > button.selected {
+  color: #cb3939;
+  border-color: #cb3939;
+  background: #eee;
+}
+.studio-main {
+  padding: 28px 28px 35px;
+  flex: 1;
+  min-width: 0;
+}
+.studio-main h1 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0 0 25px;
+}
+.studio-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 28px;
+}
+.studio-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 0 0 15px;
+  border-radius: 0;
+  font-size: 12px;
+  color: #666;
+}
+.studio-tabs button.selected {
+  color: #222;
+  border-color: #333;
+}
+.studio-tabs > span {
+  margin-left: auto;
+  color: #aaa;
+  font-size: 9px;
+}
+.studio-greeting {
+  text-align: center;
+  font-size: 23px;
+  font-weight: 500;
+  margin: 28px 0;
+}
+.studio-analytics-row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(195px, 1fr);
+  gap: 22px;
+}
+.studio-metrics-panel {
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  min-width: 0;
+  background: #fff;
+}
+.studio-metrics {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+.studio-metrics > div {
+  flex: 1;
+  text-align: center;
+  padding: 20px 8px;
+  border-right: 1px solid #eee;
+  min-width: 0;
+}
+.studio-metrics > div:first-child {
+  border-top: 2px solid #4096b7;
+  background: #f7fbfd;
+}
+.studio-metrics span {
+  display: block;
+  font-size: 10px;
+  color: #666;
+}
+.studio-metrics strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+.studio-metrics small {
+  font-size: 8px;
+  color: #488859;
+}
+.studio-metrics-panel > .native-plot {
+  padding: 14px 22px;
+}
+.studio-realtime {
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 7px;
+  padding: 20px;
+}
+.studio-realtime h2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+.realtime-indicator {
+  font-size: 10px;
+  color: #4a97bc;
+}
+.studio-realtime h1 {
+  font-size: 27px;
+  font-weight: 500;
+  margin: 25px 0 5px;
+}
+.studio-realtime p {
+  font-size: 10px;
+  color: #777;
+  margin: 0 0 12px;
+}
+.studio-realtime > button {
+  background: none;
+  border: 0;
+  color: #3183c6;
+  padding: 5px 0;
+  font-size: 10px;
+}
+.studio-realtime hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 18px 0;
+}
+.studio-realtime h3 {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 7px;
+}
+.realtime-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 85px;
+  margin-bottom: 20px;
+}
+.realtime-bars i {
+  background: #4b9fb7;
+  width: 100%;
+}
+.studio-realtime .realtime-video {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  text-align: left;
+  color: #555;
+  font-size: 9px;
+  line-height: 1.7;
+  border-top: 1px solid #eee;
+  padding: 8px 0;
+}
+.realtime-video b {
+  color: #222;
+  font-weight: 400;
+}
+.studio-content {
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background: #fff;
+  padding: 22px;
+  margin-top: 24px;
+}
+.studio-content h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 17px;
+}
+.creator-content-table {
+  overflow: auto;
+}
+.content-head,
+.creator-content-table > button {
+  display: grid;
+  grid-template-columns: 2.4fr 0.8fr 0.8fr 0.9fr;
+  gap: 18px;
+  align-items: center;
+  min-width: 550px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #88888830;
+  background: none;
+  border-radius: 0;
+  text-align: right;
+  padding: 14px 0;
+  color: inherit;
+}
+.content-head {
+  font-size: 9px;
+  opacity: 0.6;
+}
+.content-head > span:first-child {
+  text-align: left;
+}
+.creator-content-table > button > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+}
+.video-thumb {
+  height: 47px;
+  width: 83px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+  color: #fff;
+}
+.video-thumb small {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  background: #0008;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-size: 7px !important;
+  color: #fff !important;
+  margin: 0 !important;
+}
+.thumb-0 {
+  background: linear-gradient(145deg, #5f7a77, #293d49 45%, #c2a688);
+}
+.thumb-1 {
+  background: linear-gradient(125deg, #c9aa8a, #805f55 50%, #38373d);
+}
+.thumb-2 {
+  background: linear-gradient(135deg, #536f73, #b9bb9a 50%, #b98c69);
+}
+.thumb-3 {
+  background: linear-gradient(140deg, #bb8066, #776e6b 50%, #303e48);
+}
+.creator-content-table strong {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.creator-content-table strong small {
+  display: block;
+  font-size: 8px;
+  color: #888;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.creator-content-table > button > span:not(:first-child) {
+  font-size: 10px;
+}
+.studio-video-result {
+  display: flex;
+  width: 100%;
+  padding: 18px 0;
+  gap: 15px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  color: #333;
+  justify-content: flex-start;
+  text-align: left;
+}
+.studio-video-result b {
+  font-weight: 500;
+  font-size: 12px;
+}
+.studio-video-result > span:nth-child(3) {
+  margin-left: auto;
+  font-size: 10px;
+  color: #777;
+}
+.studio-community {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+}
+.studio-community h2 {
+  font-size: 17px;
+  font-weight: 500;
+}
+.studio-community article {
+  display: flex;
+  gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  font-size: 11px;
+}
+.comment-avatar {
+  height: 35px;
+  width: 35px;
+  background: #668c90;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+.studio-community b {
+  font-size: 10px;
+}
+.studio-community p {
+  color: #666;
+}
+.studio-community button {
+  background: none;
+  border: 0;
+  color: #4281b4;
+  padding: 0;
+  font-size: 10px;
+}
+.detail-art {
+  height: 180px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border-radius: 10px;
+}
+.content-detail-metrics {
+  display: flex;
+  gap: 35px;
+  font-size: 11px;
+  color: #9c9bac;
+}
+.content-detail-metrics b {
+  display: block;
+  font-size: 25px;
+  color: #fff;
+  margin-top: 10px;
+}
+/* Social insights: profile-centred, pink editorial surfaces and post grid. */
+.instagram-app {
+  background: #faf9fa;
+  color: #29252b;
+  display: flex;
+  --accent: #d63d87;
+}
+.instagram-rail {
+  width: 180px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #e7e3e7;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.instagram-wordmark {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 40px;
+  letter-spacing: -1px;
+}
+.instagram-rail > button {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: #777;
+  font-size: 12px;
+  padding: 13px;
+}
+.instagram-rail > button.selected {
+  color: #ad3773;
+  background: #f9eef5;
+}
+.ig-rail-foot {
+  margin-top: auto;
+  font-size: 8px;
+  line-height: 1.9;
+  color: #b4a9b3;
+}
+.instagram-main {
+  flex: 1;
+  min-width: 0;
+  padding: 33px 37px !important;
+}
+.instagram-main > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding-right: 170px;
+}
+.instagram-main header small {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #b29bab;
+}
+.instagram-main header h1 {
+  font-size: 27px;
+  font-weight: 550;
+  letter-spacing: -0.7px;
+  margin: 9px 0 0;
+}
+.ig-date {
+  font-size: 10px;
+  color: #a293a0;
+  white-space: nowrap;
+}
+.ig-profile {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e7e1e7;
+}
+.ig-profile-ring {
+  padding: 4px;
+  border: 2px solid #d379a9;
+  border-radius: 50%;
+  width: 87px;
+  height: 87px;
+  display: grid;
+  place-items: center;
+  color: #bc86a3;
+  background: #f3e6ef;
+  flex-shrink: 0;
+}
+.ig-profile-ring img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.ig-profile h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.ig-profile p {
+  font-size: 11px;
+  color: #9f929e;
+  margin-bottom: 8px;
+}
+.ig-profile > div > span {
+  font-size: 9px;
+  color: #ae9caa;
+}
+.ig-profile-stats {
+  margin-left: auto;
+  display: flex;
+  gap: 24px;
+  font-size: 10px;
+  color: #9c8998;
+  text-align: center;
+}
+.ig-profile-stats b {
+  display: block;
+  font-size: 19px;
+  color: #3e303a;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.ig-metric-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 29px 0;
+  gap: 15px;
+}
+.ig-metric-strip > div {
+  border-right: 1px solid #e3dce2;
+  padding-left: 10px;
+}
+.ig-metric-strip > div:last-child {
+  border: 0;
+}
+.ig-metric-strip span {
+  font-size: 10px;
+  color: #9b8998;
+}
+.ig-metric-strip h2 {
+  font-size: 25px;
+  font-weight: 550;
+  letter-spacing: -0.5px;
+  margin: 13px 0;
+}
+.ig-metric-strip small {
+  font-size: 8px;
+  color: #b05d91;
+}
+.ig-insights-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
+  gap: 24px;
+}
+.ig-growth {
+  background: #fff;
+  border: 1px solid #e7e1e7;
+  border-radius: 12px;
+  padding: 23px;
+  min-width: 0;
+}
+.ig-growth > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ig-growth h2,
+.ig-audience h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.ig-growth > div:first-child > span {
+  font-size: 9px;
+  color: #aa9ba7;
+}
+.ig-growth .native-graph {
+  height: 220px;
+}
+.ig-growth-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #b17498;
+  margin-top: 10px;
+}
+.ig-audience {
+  padding: 25px;
+  background: #f2edf2;
+  border-radius: 12px;
+}
+.ig-audience > p {
+  font-size: 9px;
+  color: #a28d9d;
+  margin: 10px 0 25px;
+}
+.ig-audience > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 10px;
+  margin: 19px 0;
+  color: #897483;
+  gap: 9px;
+}
+.ig-audience b {
+  font-size: 9px;
+  font-weight: 400;
+  color: #6c4761;
+}
+.ig-audience i {
+  width: 100%;
+  height: 4px;
+  background: #e3d6e1;
+  border-radius: 3px;
+}
+.ig-audience em {
+  display: block;
+  height: 100%;
+  background: #c287ad;
+  border-radius: 3px;
+}
+.ig-content-section {
+  margin-top: 30px;
+}
+.ig-content-section h2 {
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ig-content-section h2 button {
+  background: none;
+  border: 0;
+  color: #ad6d95;
+  font-size: 10px;
+  padding: 0;
+}
+.ig-posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.ig-posts > button {
+  display: block;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #65515f;
+}
+.ig-photo {
+  height: 160px;
+  border-radius: 9px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #fff9;
+  overflow: hidden;
+}
+.ig-photo > span {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #fff;
+}
+.ig-posts b {
+  font-size: 11px;
+  font-weight: 500;
+  display: block;
+  margin: 12px 0 7px;
+}
+.ig-posts small {
+  font-size: 9px;
+  color: #af9aa9;
+}
+/* Short video analytics: stark navigation, cyan metrics, compact ranking list. */
+.tiktok-app {
+  background: #f6f6f8;
+  color: #16171b;
+  display: flex;
+  --accent: #20bdcf;
+}
+.tiktok-nav {
+  width: 200px;
+  background: #fff;
+  border-right: 1px solid #e5e5e9;
+  padding: 30px 17px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tiktok-nav h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  margin: 0 0 50px;
+}
+.tiktok-nav h2 svg {
+  filter: drop-shadow(2px 1px #f36a83);
+  color: #20becb;
+}
+.tiktok-nav > p {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #a5a4ac;
+  margin-bottom: 15px;
+}
+.tiktok-nav > button {
+  background: none;
+  border: 0;
+  justify-content: flex-start;
+  padding: 15px 12px;
+  color: #73737e;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+.tiktok-nav > button.selected {
+  background: #e9f9fa;
+  color: #1099a9;
+  border-radius: 4px;
+}
+.tiktok-profile {
+  margin-top: auto;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tiktok-profile > span {
+  height: 30px;
+  width: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #23242b;
+  color: #fff;
+}
+.tiktok-profile b {
+  font-size: 11px;
+}
+.tiktok-profile small {
+  font-size: 8px;
+  color: #aaa;
+}
+.tiktok-main {
+  padding: 35px !important;
+  flex: 1;
+  min-width: 0;
+}
+.tiktok-main > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 175px;
+}
+.tiktok-main h1 {
+  font-size: 28px;
+  letter-spacing: -0.6px;
+  margin-bottom: 10px;
+}
+.tiktok-main header p {
+  font-size: 11px;
+  color: #8c8c96;
+}
+.tiktok-main header > span {
+  font-size: 8px;
+  color: #aaa;
+  white-space: nowrap;
+}
+.tiktok-tabs {
+  display: flex;
+  gap: 35px;
+  border-bottom: 1px solid #dedee4;
+  margin: 27px 0;
+}
+.tiktok-tabs button {
+  background: none;
+  border: 0;
+  padding: 0 0 15px;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  color: #8e8e98;
+  font-size: 12px;
+}
+.tiktok-tabs button.selected {
+  border-color: #15151a;
+  color: #15151a;
+  font-weight: 600;
+}
+.tiktok-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.tiktok-stats > button {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 17px;
+  border: 1px solid #eeeef2;
+  background: #fff;
+  border-radius: 4px;
+  padding: 19px;
+  color: #72727f;
+  position: relative;
+}
+.tiktok-stats > button.selected {
+  border-top: 3px solid #24bbca;
+  padding-top: 17px;
+  background: #f5fdfd;
+}
+.tiktok-stats strong {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: #202026;
+}
+.tiktok-stats small {
+  font-size: 8px;
+  color: #3eaaa3;
+}
+.tiktok-graph {
+  border: 1px solid #ebebef;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+}
+.tiktok-graph h2,
+.tiktok-lower h2 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.tiktok-graph .native-graph {
+  height: 235px;
+}
+.tiktok-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(230px, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+.tiktok-lower > section {
+  background: #fff;
+  border: 1px solid #e9e9ef;
+  border-radius: 5px;
+  padding: 23px;
+}
+.trending-video {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  padding: 14px 0;
+  gap: 12px;
+  justify-content: flex-start;
+  text-align: left;
+  color: #373742;
+}
+.tiktok-thumb {
+  width: 36px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  color: #fff;
+}
+.trending-video > div {
+  min-width: 0;
+}
+.trending-video b {
+  font-size: 10px;
+  font-weight: 500;
+}
+.trending-video small {
+  display: block;
+  font-size: 8px;
+  color: #999;
+  margin-top: 7px;
+}
+.trending-video strong {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+.tiktok-traffic > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 0;
+  font-size: 10px;
+}
+.tiktok-traffic b {
+  font-size: 10px;
+}
+.tiktok-traffic i {
+  height: 4px;
+  background: #3cc1cd;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+/* Broadcaster: dark streaming workspace with chat and preview. */
+.streaming-app {
+  background: #0f0f15;
+  color: #d9d6e4;
+  --accent: #ad7df4;
+}
+.stream-header {
+  height: 62px;
+  background: #19171f;
+  border-bottom: 1px solid #35313e;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 0 24px;
+  padding-right: 190px;
+}
+.stream-header > strong {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+.stream-header > strong svg {
+  color: #af7af4;
+}
+.stream-live {
+  font-size: 9px;
+  color: #df6b83;
+  letter-spacing: 1px;
+}
+.stream-header > span:last-child {
+  margin-left: auto;
+  font-size: 9px;
+  color: #6e667e;
+}
+.stream-layout {
+  display: flex;
+}
+.stream-nav {
+  width: 185px;
+  flex-shrink: 0;
+  background: #18161e;
+  padding: 20px 12px;
+}
+.stream-nav button {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 10px;
+  background: none;
+  border: 0;
+  color: #8f859e;
+  border-radius: 4px;
+  padding: 15px 12px;
+  font-size: 11px;
+}
+.stream-nav button.selected {
+  background: #31233f;
+  color: #c7a0f6;
+}
+.stream-main {
+  flex: 1;
+  min-width: 0;
+  padding: 25px !important;
+}
+.stream-main h1 {
+  font-size: 23px;
+  font-weight: 550;
+  letter-spacing: -0.5px;
+  margin-bottom: 25px;
+}
+.stream-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #1b1724;
+  margin-bottom: 20px;
+  border: 1px solid #312a3c;
+}
+.stream-stats > div {
+  padding: 16px 20px;
+  border-right: 1px solid #312a3c;
+}
+.stream-stats span {
+  font-size: 9px;
+  color: #90829e;
+}
+.stream-stats strong {
+  font-size: 24px;
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+.stream-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(220px, 1fr);
+  gap: 16px;
+}
+.stream-scene {
+  height: 315px;
+  background: radial-gradient(at 80% 80%, #46305e, #1f2538 55%, #191d2d);
+  position: relative;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.stream-scene-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 98%, #ffffff08 98%),
+    linear-gradient(90deg, transparent 98%, #ffffff08 98%);
+  background-size: 35px 35px;
+}
+.stream-scene > div:not(.stream-scene-grid) {
+  position: relative;
+}
+.stream-scene svg {
+  color: #be9fe2;
+  margin-bottom: 15px;
+}
+.stream-scene h2 {
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+}
+.stream-scene p {
+  font-size: 10px;
+  color: #9489ab;
+}
+.stream-preview-badge {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #a79bbc;
+}
+.stream-scene-footer {
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  font-size: 9px;
+  color: #bab0cb;
+}
+.stream-quick {
+  border: 1px solid #34303e;
+  background: #1b1724;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.stream-quick h3 {
+  font-size: 12px;
+  width: 100%;
+  margin: 0 0 8px;
+}
+.stream-quick button {
+  font-size: 9px;
+  padding: 8px;
+  background: #342844;
+  border-color: #4a355e;
+  color: #cfb3ee;
+}
+.stream-chat {
+  background: #19171f;
+  border: 1px solid #35303e;
+  display: flex;
+  flex-direction: column;
+  min-height: 435px;
+}
+.stream-chat h3 {
+  font-size: 12px;
+  padding: 17px;
+  border-bottom: 1px solid #35303e;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+.stream-chat > div {
+  flex: 1;
+  max-height: 340px;
+  overflow: auto;
+  padding: 12px 15px;
+}
+.stream-chat p {
+  font-size: 10px;
+  color: #a59bb2;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.stream-chat form {
+  display: flex;
+  gap: 7px;
+  padding: 12px;
+  border-top: 1px solid #35303e;
+  flex-wrap: wrap;
+}
+.stream-chat input {
+  width: 100%;
+  background: #28222f;
+  border-color: #47374f;
+  font-size: 10px;
+  color: #c7bdd2;
+}
+.stream-chat form button {
+  margin-left: auto;
+  font-size: 10px;
+  padding: 6px 12px;
+  background: #9d67d9;
+  border: 0;
+  color: #fff;
+}
+.stream-mini-chart {
+  border: 1px solid #34303e;
+  margin-top: 20px;
+  padding: 20px;
+  background: #19171f;
+}
+.stream-mini-chart h3 {
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+.stream-analytics {
+  padding: 25px;
+  background: #1b1724;
+}
+.stream-analytics h2 {
+  font-size: 17px;
+  font-weight: 500;
+}
+.stream-feed {
+  padding: 25px;
+  border: 1px solid #34303e;
+}
+.stream-feed article {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #34303e;
+  font-size: 11px;
+}
+.stream-feed article span {
+  margin-left: auto;
+  color: #bd8bea;
+}
+.stream-feed small {
+  color: #6e637c;
+}
+/* Investing: typographic brokerage workspace, no generic KPI-card grid. */
+.stocks-app {
+  background: #fff;
+  color: #202727;
+  --accent: #00a86c;
+}
+.stocks-header {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 30px;
+  padding-right: 190px;
+  border-bottom: 1px solid #e8ece9;
+}
+.stocks-header > strong {
+  font-size: 19px;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+.stocks-header strong svg {
+  color: #00ab6d;
+}
+.stocks-header > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #e3e8e4;
+  padding: 10px 13px;
+  border-radius: 5px;
+  color: #9aa59e;
+  flex: 1;
+  max-width: 350px;
+  margin: auto;
+}
+.stocks-header input {
+  border: 0;
+  background: none;
+  color: #333;
+  width: 100%;
+  padding: 0;
+  font-size: 10px;
+}
+.stocks-header nav {
+  display: flex;
+  gap: 20px;
+}
+.stocks-header nav button {
+  background: none;
+  border: 0;
+  font-size: 11px;
+  color: #767f78;
+  padding: 7px 0;
+}
+.stocks-header nav button.selected {
+  color: #00a46b;
+}
+.stock-ticker {
+  display: flex;
+  background: #f8faf8;
+  border-bottom: 1px solid #e4e9e5;
+  padding: 0 20px;
+}
+.stock-ticker button {
+  flex: 1;
+  font-size: 8px;
+  gap: 8px;
+  background: none;
+  border: 0;
+  border-right: 1px solid #e3e9e5;
+  padding: 12px 10px;
+  border-radius: 0;
+  color: #77847b;
+  white-space: nowrap;
+}
+.stock-ticker b {
+  font-size: 9px;
+  color: #303d34;
+  font-weight: 500;
+}
+.stock-ticker span {
+  color: #20a974;
+  font-size: 8px;
+}
+.stocks-main {
+  display: flex;
+  gap: 35px;
+  padding: 34px !important;
+  align-items: flex-start;
+}
+.stock-performance {
+  flex: 1;
+  min-width: 0;
+}
+.stock-value > small {
+  font-size: 14px;
+  color: #9ca69e;
+}
+.stock-value h1 {
+  font-size: 41px;
+  letter-spacing: -1.4px;
+  font-weight: 500;
+  margin: 11px 0;
+}
+.stock-value p {
+  font-size: 11px;
+}
+.stock-value p span {
+  color: #8b978e;
+  font-size: 10px;
+  margin-left: 7px;
+}
+.stock-performance > .native-plot .native-graph {
+  height: 300px;
+}
+.stock-buying-power {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e1e8e3;
+  border-bottom: 1px solid #e1e8e3;
+  padding: 21px 0;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.stock-buying-power b {
+  font-weight: 500;
+}
+.stock-right {
+  width: 300px;
+  flex-shrink: 0;
+}
+.stock-order {
+  border: 1px solid #dfe6e0;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px #1a462309;
+  padding: 19px;
+}
+.stock-order .trade-desk {
+  border: 0;
+  padding: 0;
+}
+.stock-order .desk-header > span {
+  font-size: 6px;
+}
+.stock-order .desk-header h2 {
+  font-size: 15px;
+}
+.stock-order .desk-tabs {
+  gap: 15px;
+  border-color: #e1e7e2;
+}
+.stock-order .desk-tabs button {
+  font-size: 10px;
+}
+.stock-order .trade-fields {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.stock-order .trade-fields label:first-child {
+  display: none;
+}
+.stock-order .trade-fields label {
+  font-size: 10px;
+  margin: 10px 0;
+}
+.stock-order .trade-summary {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+  font-size: 10px;
+}
+.stock-order .trade-summary button {
+  color: #fff;
+  background: #00a66c;
+  padding: 13px;
+  border-radius: 30px;
+}
+.stock-order input,
+.stock-order select {
+  color: #333 !important;
+  background: #f8faf8 !important;
+}
+.stock-market-note {
+  border: 1px solid #dfe6e0;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 5px;
+}
+.stock-market-note h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+.stock-market-note > p {
+  font-size: 10px;
+  color: #8c998f;
+}
+.stock-market-note > div {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e4eae6;
+  padding: 14px 0;
+  font-size: 10px;
+  color: #8d9990;
+}
+.stock-market-note b {
+  color: #4c6755;
+  font-weight: 400;
+}
+.stock-holdings {
+  margin-top: 35px;
+}
+.stock-holdings h2 {
+  font-size: 22px;
+  font-weight: 500;
+  border-bottom: 1px solid #e1e7e3;
+  padding-bottom: 20px;
+}
+.stock-table-head,
+.stock-holdings > button {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 0.8fr 1fr;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+  text-align: right;
+}
+.stock-table-head {
+  font-size: 9px;
+  color: #9aa99e;
+  padding: 8px 0 15px;
+}
+.stock-table-head > span:first-child {
+  text-align: left;
+}
+.stock-holdings > button {
+  border: 0;
+  border-bottom: 1px solid #edf0ed;
+  border-radius: 0;
+  background: none;
+  color: #333;
+  padding: 18px 0;
+  font-size: 11px;
+}
+.stock-holdings > button.selected {
+  background: #f1fbf6;
+}
+.stock-holdings > button > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+.stock-holdings b {
+  font-size: 11px;
+  font-weight: 500;
+}
+.stock-holdings small {
+  display: block;
+  color: #9ba89e;
+  font-size: 8px;
+  margin-top: 6px;
+}
+.company-mark {
+  height: 31px;
+  width: 31px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  border-radius: 6px;
+  background: #293b2e;
+  color: #c3e4ab;
+}
+.company-1 {
+  background: #ebedef;
+  color: #555;
+}
+.company-2 {
+  background: #e5effb;
+  color: #4583b6;
+}
+.company-3 {
+  background: #ffe5e7;
+  color: #d56e79;
+}
+.company-4 {
+  background: #fff0d7;
+  color: #b38134;
+}
+.stock-allocation {
+  padding: 25px 0;
+}
+.stock-allocation h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.stock-allocation > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  padding: 10px 0;
+}
+.stock-allocation span {
+  width: 70px;
+}
+.stock-allocation i {
+  height: 5px;
+  background: #66b593;
+  border-radius: 3px;
+}
+.stock-allocation b {
+  font-weight: 400;
+  color: #7b9784;
+}
+/* Commerce: muted store administration, compact rectangular surfaces. */
+.commerce-app {
+  background: #f1f1f1;
+  color: #2c302f;
+  --accent: #17846b;
+  font-family: Arial, sans-serif;
+}
+.commerce-header {
+  height: 61px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  padding: 0 22px;
+  padding-right: 190px;
+  border-bottom: 1px solid #ddd;
+}
+.commerce-header > strong {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.commerce-header strong svg {
+  color: #548469;
+}
+.commerce-header > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 14px;
+  width: 42%;
+  margin: auto;
+  background: #f1f2f1;
+  border: 1px solid #dfe1df;
+  border-radius: 7px;
+  font-size: 10px;
+  color: #9b9e9b;
+}
+.commerce-header > span {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.commerce-header small {
+  font-size: 6px;
+  color: #9aa79e;
+  margin-left: 10px;
+}
+.commerce-layout {
+  display: flex;
+}
+.commerce-nav {
+  width: 190px;
+  flex-shrink: 0;
+  background: #ebedeb;
+  padding: 20px 12px;
+  border-right: 1px solid #dce0dc;
+}
+.commerce-nav > button {
+  display: flex;
+  justify-content: flex-start;
+  gap: 11px;
+  border: 0;
+  background: none;
+  color: #656d67;
+  padding: 11px 14px;
+  width: 100%;
+  border-radius: 7px;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.commerce-nav > button.selected {
+  background: #dce3dd;
+  color: #263c2f;
+  font-weight: 600;
+}
+.commerce-nav > button > span {
+  margin-left: auto;
+  background: #c5d0c8;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 8px;
+}
+.commerce-channel {
+  margin: 30px 12px;
+  font-size: 10px;
+  color: #808b82;
+}
+.commerce-channel > small {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.commerce-channel p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  color: #7d8b81;
+}
+.commerce-main {
+  padding: 29px 30px !important;
+  flex: 1;
+  min-width: 0;
+}
+.commerce-main > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.commerce-main h1 {
+  font-size: 25px;
+  letter-spacing: -0.6px;
+  margin-bottom: 7px;
+}
+.commerce-main header p {
+  font-size: 10px;
+  color: #909a93;
+  margin-bottom: 0;
+}
+.commerce-main > header > span {
+  font-size: 10px;
+  background: #fff;
+  padding: 8px 10px;
+  border: 1px solid #d6dcd7;
+  border-radius: 6px;
+  color: #8e9b91;
+}
+.commerce-view-tabs {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  border-bottom: 1px solid #d5dcd7;
+  margin-bottom: 19px;
+}
+.commerce-view-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #89978c;
+  font-size: 11px;
+  padding: 8px 0 12px;
+}
+.commerce-view-tabs button.selected {
+  border-color: #447f63;
+  color: #2c4c3a;
+}
+.commerce-view-tabs > span {
+  margin-left: auto;
+  font-size: 8px;
+  color: #98a39a;
+}
+.commerce-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border: 1px solid #d8ddd9;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.commerce-summary > div {
+  padding: 18px;
+  border-right: 1px solid #e8ece8;
+}
+.commerce-summary > div:last-child {
+  border: 0;
+}
+.commerce-summary span {
+  font-size: 10px;
+  color: #8b978e;
+}
+.commerce-summary h2 {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin: 14px 0;
+  font-weight: 500;
+}
+.commerce-summary small {
+  font-size: 7px;
+  color: #91a396;
+}
+.commerce-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr);
+  gap: 19px;
+  margin-bottom: 20px;
+}
+.commerce-box {
+  background: #fff;
+  border: 1px solid #d9ded9;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 0;
+  margin-bottom: 0;
+}
+.commerce-box h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.commerce-box h2 small {
+  font-size: 10px;
+  background: #dfece4;
+  border-radius: 6px;
+  padding: 3px 6px;
+  margin-left: 10px;
+}
+.commerce-box > p {
+  font-size: 10px;
+  color: #94a098;
+}
+.commerce-box > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.commerce-box > header b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.commerce-box .native-graph {
+  height: 210px;
+}
+.commerce-breakdown {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 13px 0;
+  font-size: 10px;
+  color: #95a099;
+}
+.commerce-breakdown b {
+  font-size: 10px;
+  color: #4b6758;
+  font-weight: 500;
+}
+.commerce-breakdown i {
+  height: 4px;
+  background: #55a087;
+  flex-shrink: 0;
+}
+.commerce-mrr {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e1e8e2;
+  font-size: 8px;
+  color: #96a49a;
+}
+.commerce-mrr strong {
+  font-size: 15px;
+  color: #47765e;
+  font-weight: 500;
+}
+.commerce-recent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #e9ede9;
+  border-radius: 0;
+  color: #607569;
+  font-size: 10px;
+  padding: 14px 0;
+}
+.commerce-recent b {
+  font-size: 10px;
+}
+.commerce-recent > span {
+  font-size: 9px;
+  color: #9aa59d;
+}
+.commerce-recent small {
+  background: #e9f4e8;
+  color: #6e9479;
+  border-radius: 4px;
+  padding: 3px;
+  font-size: 7px;
+  margin-left: auto;
+}
+.commerce-recent strong {
+  font-size: 10px;
+  font-weight: 500;
+}
+.commerce-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.commerce-note > svg {
+  color: #85a591;
+  margin-bottom: 17px;
+}
+.commerce-note h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.commerce-note p {
+  font-size: 10px;
+  line-height: 1.9;
+}
+.commerce-note button {
+  font-size: 10px;
+  background: #f4f7f4;
+  color: #5c7e68;
+  border-color: #d7e1d9;
+}
+.commerce-main .trade-desk {
+  background: #fff;
+  border: 1px solid #d9ded9;
+  border-radius: 8px;
+  padding: 22px;
+}
+.commerce-main .desk-header h2 {
+  font-size: 14px;
+}
+.commerce-main .trade-fields {
+  gap: 15px;
+}
+.commerce-main .trade-summary button {
+  color: #fff;
+  background: #297c60;
+}
+.commerce-product {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  border-top: 1px solid #e4eae5;
+  padding: 20px 0;
+  font-size: 12px;
+  color: #628071;
+}
+.commerce-product > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.commerce-product small {
+  color: #9ea9a1;
+  font-size: 9px;
+}
+.commerce-product strong {
+  margin-left: auto;
+  font-size: 15px;
+  font-weight: 500;
+}
+.commerce-main .native-ledger {
+  padding: 0;
+}
+.commerce-main > .trade-desk {
+  margin-bottom: 22px;
+}
+/* Banking: account-oriented navy workspace; balances never drift. */
+.bank-app {
+  display: flex;
+  background: #f4f6fa;
+  color: #24344c;
+  --accent: #365aaa;
+}
+.bank-nav {
+  width: 215px;
+  flex-shrink: 0;
+  background: #10253e;
+  color: #a9b8cc;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bank-nav h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 500;
+  color: #ecf1f7;
+  margin: 0 0 15px;
+}
+.bank-nav > small {
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #64809e;
+  margin-bottom: 47px;
+}
+.bank-nav > button {
+  border: 0;
+  background: none;
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px 13px;
+  color: #6f8ca9;
+  gap: 12px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+.bank-nav > button.selected {
+  background: #1d3856;
+  color: #cfdbeb;
+}
+.bank-nav > div {
+  margin-top: auto;
+  font-size: 8px;
+  color: #536e8b;
+  line-height: 1.8;
+}
+.bank-main {
+  flex: 1;
+  min-width: 0;
+  padding: 38px 35px !important;
+}
+.bank-main > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-right: 170px;
+  margin-bottom: 35px;
+}
+.bank-main header small {
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  color: #99a7b9;
+}
+.bank-main header h1 {
+  font-size: 27px;
+  font-weight: 500;
+  margin: 12px 0 10px;
+  letter-spacing: -0.7px;
+}
+.bank-main header p {
+  font-size: 10px;
+  color: #94a4b6;
+  margin-bottom: 0;
+}
+.bank-main header > button {
+  background: #264e84;
+  border: 0;
+  color: #c8d9ed;
+  font-size: 10px;
+  padding: 11px 13px;
+}
+.bank-top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+  gap: 25px;
+  margin-bottom: 30px;
+}
+.bank-total {
+  padding: 23px 4px;
+}
+.bank-total > span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #7a91ab;
+}
+.bank-total h1 {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -1.3px;
+  margin: 17px 0 12px;
+}
+.bank-total p {
+  font-size: 10px;
+  color: #99a9bb;
+  margin-bottom: 30px;
+}
+.bank-total > div {
+  display: flex;
+  gap: 40px;
+}
+.bank-total > div span {
+  font-size: 9px;
+  color: #8c9db0;
+}
+.bank-total b {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #526c8b;
+  margin-top: 10px;
+}
+.bank-card {
+  border-radius: 16px;
+  background: linear-gradient(125deg, #294365, #132d4d);
+  color: #d3e0ee;
+  padding: 26px;
+  box-shadow: 0 15px 30px #17395714;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+.bank-card > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bank-card > div > strong {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.bank-card > div svg {
+  color: #7a92ad;
+}
+.bank-card > span {
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: #6d8cae;
+  margin: 23px 0;
+}
+.bank-card h2 {
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0 0 20px;
+}
+.bank-card b {
+  font-size: 10px;
+  font-weight: 400;
+}
+.bank-card small {
+  font-size: 5px;
+  letter-spacing: 1px;
+  color: #6b8bb0;
+}
+.bank-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(240px, 1fr);
+  gap: 23px;
+}
+.bank-box {
+  border: 1px solid #e0e7ee;
+  background: #fff;
+  border-radius: 8px;
+  padding: 23px;
+  min-width: 0;
+}
+.bank-box h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.bank-box .native-graph {
+  height: 205px;
+}
+.bank-no-activity {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 35px 10px;
+  color: #9bacc0;
+}
+.bank-no-activity p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #9aaec3;
+}
+.bank-no-activity button {
+  font-size: 10px;
+  background: #edf2f9;
+  border-color: #d6e2f1;
+  color: #6b87ac;
+}
+.bank-transaction {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 19px 0;
+  border-bottom: 1px solid #e5ecf3;
+  font-size: 10px;
+  color: #728aa6;
+}
+.bank-transaction > span {
+  height: 30px;
+  width: 30px;
+  background: #edf3fb;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.bank-transaction b {
+  font-size: 10px;
+  font-weight: 500;
+  color: #526f92;
+}
+.bank-transaction small {
+  display: block;
+  font-size: 8px;
+  color: #a6b5c5;
+  margin-top: 6px;
+}
+.bank-transaction strong {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+}
+.bank-accounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.bank-accounts .bank-box > svg {
+  color: #7395ba;
+  margin-bottom: 18px;
+}
+.bank-accounts strong {
+  font-size: 30px;
+  font-weight: 500;
+}
+.bank-accounts p {
+  font-size: 10px;
+  color: #9aacbf;
+  margin: 18px 0;
+}
+.bank-accounts button {
+  font-size: 10px;
+  color: #6d8bad;
+  border-color: #dce5ef;
+  background: #f5f8fc;
+}
+.bank-transfer {
+  background: #fff;
+  margin-top: 25px;
+  border: 1px solid #dfe6ef;
+  border-radius: 8px;
+}
+.bank-transfer .trade-desk {
+  border: 0;
+}
+.bank-transfer .trade-summary button {
+  background: #31568d;
+  color: #fff;
+}
+/* Web analytics: horizontal site navigation and geographic data. */
+.analytics-app {
+  background: #13151e;
+  color: #d4d7e6;
+  --accent: #9985f2;
+}
+.analytics-app > header {
+  height: 74px;
+  padding: 0 30px;
+  padding-right: 190px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 1px solid #2e303e;
+  background: #181a25;
+}
+.analytics-app > header > strong {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+.analytics-app > header strong svg {
+  color: #a898eb;
+}
+.analytics-app > header nav {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+.analytics-app > header button {
+  background: none;
+  border: 0;
+  color: #6d7087;
+  font-size: 11px;
+  padding: 8px 0;
+}
+.analytics-app > header button.selected {
+  color: #b9a7ee;
+}
+.analytics-app > header > span {
+  font-size: 10px;
+  color: #626984;
+}
+.analytics-app > header > span small {
+  font-size: 6px;
+  display: block;
+  color: #4b536e;
+  margin-top: 5px;
+}
+.analytics-app > main {
+  max-width: 1180px;
+  padding: 35px !important;
+  margin: auto;
+}
+.analytics-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.analytics-title h1 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.7px;
+  margin: 0;
+}
+.analytics-live {
+  font-size: 10px;
+  color: #9f8cd0;
+}
+.analytics-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-bottom: 30px;
+  border-bottom: 1px solid #292c3a;
+  margin-bottom: 25px;
+}
+.analytics-metrics > div {
+  padding: 0 15px 0 0;
+  border-right: 1px solid #2c2f3f;
+  margin-right: 30px;
+}
+.analytics-metrics > div:last-child {
+  border: 0;
+}
+.analytics-metrics span {
+  font-size: 10px;
+  color: #6d7794;
+}
+.analytics-metrics strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  margin-top: 17px;
+}
+.analytics-panel {
+  border: 1px solid #2c3041;
+  border-radius: 7px;
+  padding: 23px;
+  background: #191c28;
+}
+.analytics-panel h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #a6afc9;
+}
+.analytics-chart .native-graph {
+  height: 275px;
+}
+.analytics-lower {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 23px;
+  margin-top: 23px;
+}
+.analytics-source {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0;
+  font-size: 11px;
+  border-bottom: 1px solid #2c3041;
+}
+.analytics-source b {
+  font-size: 11px;
+  font-weight: 500;
+  color: #b3a0e8;
+}
+.analytics-source i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #7766b5;
+}
+.analytics-map {
+  width: 100%;
+  height: 230px;
+  color: #30364d;
+}
+.analytics-page-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  border: 0;
+  border-bottom: 1px solid #343849;
+  background: none;
+  border-radius: 0;
+  gap: 15px;
+  text-align: left;
+  font-size: 12px;
+  color: #a1aec8;
+}
+.analytics-page-row span {
+  margin-left: auto;
+  color: #797897;
+  font-size: 10px;
+}
+.analytics-panel h3 {
+  margin-top: 25px;
+  font-size: 15px;
+}
+.collection-app {
+  background: #171714;
+  color: #dad6c6;
+  --accent: #c6b887;
+}
+.collection-app > header {
+  background: #20201a;
+  border-color: #38382c;
+}
+.collection-app .analytics-panel {
+  background: #202019;
+  border-color: #3c3b2f;
+}
+.collection-app .analytics-source {
+  border-color: #3c3b2f;
+}
+/* Theme changes belong to the library; they must not invert individual applications. */
+.app.light {
+  filter: none;
+  background: #f5f6f3;
+  color: #303a32;
+}
+.app.light .sidebar {
+  background: #eef1ea;
+  border-color: #d7ddcf;
+}
+.app.light .topbar {
+  border-color: #d9dfd2;
+  background: #f5f6f3;
+}
+.app.light .brand {
+  color: #263a28;
+}
+.app.light .template-card {
+  background: #f2f5ef;
+  border-color: #d0d9c9;
+}
+.app.light .preview,
+.app.light .hero-visual {
+  filter: none;
+}
+.app.light .nav {
+  color: #78846f;
+}
+.app.light .nav.active {
+  background: #d6e3c9;
+  color: #3c572b;
+}
+.app.light .breadcrumb span {
+  color: #5b6a50;
+}
+.app.light .user {
+  border-color: #ced7c6;
+}
+.app.light .card-info > p {
+  color: #7b896e;
+}
+.app.light .card-title h4 {
+  color: #37442f;
+}
+/* Responsive proportions for MacBook-sized and narrow windows. */
+.ref-fullscreen .native-stamp {
+  position: fixed;
+  top: 10px;
+  right: 14px;
+}
+.ref-fullscreen .native-capture {
+  min-height: 100dvh;
+}
+.ref-dashboard .native-capture > div {
+  isolation: isolate;
+}
+.native-capture input,
+.native-capture select {
+  color-scheme: inherit;
+}
+.studio-app,
+.instagram-app,
+.tiktok-app,
+.stocks-app,
+.commerce-app,
+.bank-app,
+.trust-stage {
+  color-scheme: light;
+}
+.native-capture header button {
+  white-space: nowrap;
+}
+@media (min-width: 1700px) {
+  .native-wallet-stage {
+    padding-top: 65px;
+  }
+  .native-wallet {
+    width: 490px;
+  }
+  .exodus-overview {
+    padding-top: 60px;
+    padding-bottom: 55px;
+  }
+  .allocation-ring {
+    height: 340px;
+    width: 340px;
+  }
+  .terminal-grid {
+    grid-template-columns: 255px minmax(0, 1fr) 320px;
+  }
+  .terminal-resize {
+    height: 480px;
+  }
+  .terminal-ticket .trade-fields label {
+    margin: 17px 0;
+  }
+  .discovery-columns {
+    gap: 25px;
+  }
+  .token-open {
+    padding: 24px 17px;
+  }
+  .token-art {
+    height: 65px;
+    width: 65px;
+  }
+  .token-metrics {
+    font-size: 9px;
+  }
+  .token-metrics b {
+    font-size: 11px;
+  }
+  .token-listing h3 {
+    font-size: 16px;
+  }
+  .token-listing p {
+    font-size: 11px;
+  }
+}
+@media (max-width: 1200px) {
+  .native-stamp {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .terminal-grid {
+    grid-template-columns: 165px minmax(0, 1fr) 240px;
+    gap: 5px;
+    padding: 5px;
+  }
+  .terminal-watch {
+    padding: 12px 10px;
+  }
+  .terminal-ticket {
+    padding: 12px;
+  }
+  .terminal-header > span {
+    display: none;
+  }
+  .terminal-header {
+    gap: 15px;
+    padding-left: 18px;
+  }
+  .terminal-header strong {
+    font-size: 15px;
+  }
+  .terminal-header nav {
+    gap: 18px;
+  }
+  .terminal-header nav button {
+    font-size: 10px;
+  }
+  .pair-banner {
+    gap: 13px;
+    padding: 15px;
+  }
+  .pair-banner h1 {
+    font-size: 16px;
+  }
+  .pair-banner > strong {
+    font-size: 14px;
+  }
+  .pair-banner > span {
+    font-size: 7px;
+  }
+  .terminal-watch > button {
+    font-size: 8px;
+  }
+  .terminal-watch > button b {
+    font-size: 8px;
+  }
+  .terminal-resize {
+    padding: 10px 12px;
+  }
+  .discovery-header {
+    padding-left: 20px;
+    gap: 20px;
+  }
+  .discovery-header > strong {
+    font-size: 16px;
+  }
+  .discovery-header small {
+    font-size: 10px;
+  }
+  .market-pulse {
+    display: none;
+  }
+  .discovery-header nav {
+    gap: 15px;
+  }
+  .discovery-columns {
+    gap: 12px;
+    padding: 16px;
+  }
+  .discovery-columns > section {
+    padding: 9px;
+  }
+  .discovery-columns h2 {
+    font-size: 15px;
+  }
+  .token-open {
+    gap: 9px;
+    padding: 14px 9px;
+  }
+  .token-art {
+    width: 39px;
+    height: 39px;
+    font-size: 25px;
+  }
+  .token-listing h3 {
+    font-size: 11px;
+  }
+  .token-listing h3 small {
+    display: none;
+  }
+  .token-metrics {
+    font-size: 6px;
+    gap: 3px;
+  }
+  .token-metrics b {
+    font-size: 8px;
+  }
+  .exodus-header {
+    padding-right: 155px;
+  }
+  .exodus-header strong {
+    font-size: 12px;
+  }
+  .exodus-header > span {
+    display: none;
+  }
+  .exodus-overview {
+    gap: 25px;
+    padding: 35px 10px;
+  }
+  .allocation-ring {
+    height: 255px;
+    width: 255px;
+    padding: 15px;
+  }
+  .allocation-ring h1 {
+    font-size: 24px;
+  }
+  .exodus-performance h2 {
+    font-size: 20px;
+  }
+  .exodus-asset {
+    gap: 13px;
+    font-size: 10px;
+    padding: 18px 5px;
+  }
+  .exodus-asset strong {
+    font-size: 14px;
+  }
+  .studio-sidebar {
+    width: 165px;
+  }
+  .studio-main {
+    padding: 26px 20px !important;
+  }
+  .studio-header {
+    gap: 20px;
+    padding-left: 20px;
+  }
+  .studio-header > strong {
+    font-size: 17px;
+  }
+  .studio-metrics strong {
+    font-size: 18px;
+  }
+  .studio-analytics-row {
+    gap: 15px;
+    grid-template-columns: minmax(0, 1fr) 180px;
+  }
+  .studio-metrics span {
+    font-size: 8px;
+  }
+  .studio-metrics small {
+    font-size: 6px;
+  }
+  .studio-realtime {
+    padding: 15px;
+  }
+  .studio-greeting {
+    font-size: 20px;
+  }
+  .studio-tabs > span {
+    display: none;
+  }
+  .instagram-rail {
+    width: 145px;
+    padding: 26px 13px;
+  }
+  .instagram-wordmark {
+    font-size: 21px;
+  }
+  .instagram-main {
+    padding: 30px 24px !important;
+  }
+  .instagram-main > header {
+    padding-right: 155px;
+  }
+  .instagram-main header h1 {
+    font-size: 24px;
+  }
+  .ig-date {
+    display: none;
+  }
+  .ig-profile {
+    gap: 17px;
+    flex-wrap: wrap;
+  }
+  .ig-profile h2 {
+    font-size: 18px;
+  }
+  .ig-profile-stats {
+    gap: 20px;
+  }
+  .ig-profile-stats b {
+    font-size: 16px;
+  }
+  .ig-insights-layout {
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) 200px;
+  }
+  .ig-growth {
+    padding: 18px;
+  }
+  .ig-audience {
+    padding: 20px;
+  }
+  .ig-metric-strip h2 {
+    font-size: 22px;
+  }
+  .tiktok-nav {
+    width: 165px;
+  }
+  .tiktok-nav h2 {
+    font-size: 17px;
+  }
+  .tiktok-nav h2 svg {
+    width: 22px;
+  }
+  .tiktok-main {
+    padding: 28px 24px !important;
+  }
+  .tiktok-stats {
+    gap: 10px;
+  }
+  .tiktok-stats > button {
+    padding: 15px 13px;
+  }
+  .tiktok-stats > button.selected {
+    padding-top: 13px;
+  }
+  .tiktok-stats strong {
+    font-size: 21px;
+  }
+  .tiktok-main > header {
+    padding-right: 155px;
+  }
+  .tiktok-main header > span {
+    display: none;
+  }
+  .tiktok-lower {
+    grid-template-columns: minmax(0, 1.5fr) minmax(180px, 1fr);
+    gap: 15px;
+  }
+  .tiktok-lower > section {
+    padding: 18px;
+  }
+  .stream-header {
+    gap: 20px;
+  }
+  .stream-header > span:last-child {
+    display: none;
+  }
+  .stream-nav {
+    width: 155px;
+  }
+  .stream-nav button {
+    font-size: 10px;
+    gap: 8px;
+    padding: 14px 8px;
+  }
+  .stream-main {
+    padding: 23px 19px !important;
+  }
+  .stream-workspace {
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 12px;
+  }
+  .stream-scene h2 {
+    font-size: 21px;
+  }
+  .stocks-header {
+    padding-left: 22px;
+    gap: 20px;
+  }
+  .stocks-header > strong {
+    font-size: 16px;
+  }
+  .stocks-header > div {
+    max-width: 240px;
+  }
+  .stocks-header nav {
+    gap: 13px;
+  }
+  .stocks-main {
+    gap: 23px;
+    padding: 28px 25px !important;
+  }
+  .stock-right {
+    width: 255px;
+  }
+  .stock-order {
+    padding: 15px;
+  }
+  .stock-order .desk-tabs {
+    gap: 10px;
+  }
+  .stock-order .desk-tabs button {
+    font-size: 9px;
+  }
+  .stock-ticker {
+    padding: 0 13px;
+  }
+  .stock-ticker button {
+    gap: 5px;
+    padding: 10px 7px;
+  }
+  .stock-ticker span {
+    display: none;
+  }
+  .commerce-nav {
+    width: 155px;
+    padding: 20px 8px;
+  }
+  .commerce-main {
+    padding: 26px 23px !important;
+  }
+  .commerce-summary > div {
+    padding: 15px;
+  }
+  .commerce-summary h2 {
+    font-size: 21px;
+  }
+  .commerce-dashboard-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(200px, 1fr);
+    gap: 15px;
+  }
+  .commerce-recent > span {
+    font-size: 8px;
+  }
+  .commerce-recent small {
+    display: none;
+  }
+  .bank-nav {
+    width: 180px;
+    padding: 32px 17px;
+  }
+  .bank-nav h2 {
+    font-size: 17px;
+  }
+  .bank-main {
+    padding: 32px 25px !important;
+  }
+  .bank-main > header {
+    padding-right: 150px;
+  }
+  .bank-main header h1 {
+    font-size: 24px;
+  }
+  .bank-top-grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 20px;
+  }
+  .bank-card {
+    padding: 21px;
+  }
+  .bank-total h1 {
+    font-size: 34px;
+  }
+  .bank-lower {
+    grid-template-columns: minmax(0, 1.3fr) minmax(200px, 1fr);
+    gap: 18px;
+  }
+  .bank-box {
+    padding: 20px;
+  }
+  .analytics-app > header {
+    padding-left: 25px;
+    gap: 25px;
+  }
+  .analytics-app > header > strong {
+    font-size: 16px;
+  }
+  .analytics-app > header nav {
+    gap: 15px;
+  }
+  .analytics-app > header > span {
+    display: none;
+  }
+  .analytics-app > main {
+    padding: 30px !important;
+  }
+}
+@media (max-width: 900px) {
+  .terminal-grid {
+    grid-template-columns: 145px minmax(0, 1fr);
+  }
+  .terminal-ticket {
+    grid-column: 1/-1;
+  }
+  .terminal-ticket .trade-fields {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+  }
+  .terminal-ticket .trade-fields label:first-child {
+    display: block;
+  }
+  .terminal-ticket .trade-summary {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .terminal-ticket .trade-summary button {
+    width: auto;
+  }
+  .terminal-ticket > section {
+    margin-top: 20px;
+  }
+  .terminal-ticket > section p {
+    font-size: 10px;
+  }
+  .terminal-header {
+    padding-right: 150px;
+  }
+  .terminal-header strong {
+    font-size: 13px;
+  }
+  .terminal-header nav {
+    gap: 13px;
+  }
+  .terminal-header nav button {
+    font-size: 9px;
+  }
+  .terminal-portfolio {
+    padding: 15px;
+  }
+  .discovery-header {
+    padding-right: 150px;
+  }
+  .discovery-header > strong {
+    font-size: 14px;
+  }
+  .discovery-header small {
+    display: none;
+  }
+  .discovery-header nav {
+    gap: 12px;
+  }
+  .discovery-header nav button {
+    font-size: 10px;
+  }
+  .discovery-columns {
+    gap: 8px;
+    padding: 12px;
+  }
+  .discovery-columns > section {
+    padding: 7px;
+  }
+  .discovery-columns h2 {
+    font-size: 13px;
+  }
+  .discovery-columns header > span {
+    display: none;
+  }
+  .token-open {
+    padding: 13px 8px;
+    gap: 8px;
+  }
+  .token-art {
+    height: 31px;
+    width: 31px;
+    font-size: 21px;
+  }
+  .token-listing p {
+    font-size: 8px;
+  }
+  .token-metrics {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .token-metrics span {
+    white-space: nowrap;
+  }
+  .exodus-app {
+    padding: 0 22px 30px;
+  }
+  .exodus-header {
+    gap: 20px;
+    padding-right: 150px;
+  }
+  .exodus-header strong {
+    font-size: 11px;
+  }
+  .exodus-header strong > span {
+    font-size: 23px;
+    margin-right: 8px;
+  }
+  .exodus-header nav {
+    gap: 15px;
+  }
+  .exodus-header nav button {
+    font-size: 11px;
+  }
+  .exodus-overview {
+    gap: 25px;
+    grid-template-columns: 1fr 1.2fr;
+    padding: 35px 0;
+  }
+  .allocation-ring {
+    height: 230px;
+    width: 230px;
+  }
+  .allocation-ring h1 {
+    font-size: 22px;
+  }
+  .exodus-performance h2 {
+    font-size: 18px;
+  }
+  .exodus-asset {
+    grid-template-columns: 30px 0.7fr 0.9fr 0.7fr 1fr 1fr 15px;
+    gap: 10px;
+    font-size: 10px;
+  }
+  .exodus-asset strong {
+    font-size: 12px;
+  }
+  .studio-sidebar {
+    width: 145px;
+  }
+  .studio-sidebar > button {
+    padding: 16px 16px;
+    gap: 13px;
+    font-size: 11px;
+  }
+  .studio-analytics-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-realtime {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .studio-realtime > hr {
+    display: none;
+  }
+  .studio-realtime h1 {
+    margin: 0;
+    font-size: 23px;
+  }
+  .studio-realtime h3 {
+    margin: 0;
+  }
+  .studio-realtime > p {
+    margin: 0;
+  }
+  .studio-realtime .realtime-bars {
+    grid-column: 1/-1;
+    height: 60px;
+    margin: 5px 0;
+  }
+  .studio-realtime .realtime-video {
+    grid-column: 1/-1;
+  }
+  .studio-header > div {
+    width: 35%;
+  }
+  .studio-header > strong {
+    font-size: 16px;
+  }
+  .studio-header {
+    padding-right: 150px;
+  }
+  .channel-art,
+  .channel-identity img {
+    width: 70px;
+    height: 70px;
+  }
+  .studio-greeting {
+    font-size: 20px;
+  }
+  .instagram-rail {
+    width: 125px;
+    padding: 25px 9px;
+  }
+  .instagram-wordmark {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  .instagram-rail > button {
+    padding: 12px 9px;
+    font-size: 10px;
+    gap: 10px;
+  }
+  .instagram-main {
+    padding: 25px 21px !important;
+  }
+  .ig-insights-layout {
+    grid-template-columns: 1fr;
+  }
+  .ig-audience {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+  }
+  .ig-audience h2,
+  .ig-audience > p {
+    grid-column: 1/-1;
+  }
+  .ig-audience > p {
+    margin-bottom: 10px;
+  }
+  .ig-profile-stats {
+    width: 100%;
+    justify-content: flex-start;
+    margin: 5px 0 0 105px;
+  }
+  .ig-metric-strip h2 {
+    font-size: 20px;
+  }
+  .ig-metric-strip span {
+    font-size: 8px;
+  }
+  .ig-metric-strip small {
+    font-size: 6px;
+  }
+  .ig-photo {
+    height: 140px;
+  }
+  .tiktok-nav {
+    width: 145px;
+    padding: 25px 12px;
+  }
+  .tiktok-nav h2 {
+    font-size: 15px;
+    gap: 4px;
+  }
+  .tiktok-nav > button {
+    font-size: 11px;
+    padding: 13px 10px;
+  }
+  .tiktok-main {
+    padding: 27px 22px !important;
+  }
+  .tiktok-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tiktok-stats strong {
+    font-size: 24px;
+  }
+  .tiktok-lower {
+    grid-template-columns: 1fr;
+  }
+  .tiktok-main header p {
+    font-size: 10px;
+  }
+  .stream-nav {
+    width: 145px;
+    padding: 20px 9px;
+  }
+  .stream-nav button {
+    font-size: 9px;
+  }
+  .stream-workspace {
+    grid-template-columns: 1fr;
+  }
+  .stream-chat {
+    min-height: 280px;
+  }
+  .stream-chat > div {
+    min-height: 150px;
+    max-height: 220px;
+  }
+  .stream-chat input {
+    width: calc(100% - 60px);
+  }
+  .stream-scene {
+    height: 295px;
+  }
+  .stream-stats strong {
+    font-size: 20px;
+  }
+  .stream-header {
+    padding-right: 150px;
+  }
+  .stream-header > strong {
+    font-size: 14px;
+  }
+  .stream-live {
+    font-size: 7px;
+  }
+  .stocks-header {
+    padding-right: 150px;
+    gap: 20px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 70px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+  }
+  .stocks-header > strong {
+    font-size: 15px;
+  }
+  .stocks-header > div {
+    width: 200px;
+    flex: none;
+    margin: 0;
+  }
+  .stocks-header nav {
+    width: 100%;
+    gap: 30px;
+  }
+  .stocks-header nav button {
+    font-size: 11px;
+  }
+  .stocks-main {
+    gap: 20px;
+    padding: 25px 20px !important;
+  }
+  .stock-right {
+    width: 235px;
+  }
+  .stock-value h1 {
+    font-size: 34px;
+  }
+  .stock-holdings b {
+    font-size: 10px;
+  }
+  .stock-holdings > button {
+    font-size: 10px;
+    gap: 8px;
+  }
+  .stock-table-head {
+    gap: 8px;
+    font-size: 8px;
+  }
+  .stock-holdings .company-mark {
+    display: none;
+  }
+  .stock-holdings small {
+    font-size: 7px;
+  }
+  .commerce-nav {
+    width: 135px;
+    padding: 20px 8px;
+  }
+  .commerce-nav > button {
+    font-size: 10px;
+    gap: 10px;
+    padding: 12px 9px;
+  }
+  .commerce-main {
+    padding: 24px 20px !important;
+  }
+  .commerce-header {
+    padding-right: 150px;
+    gap: 15px;
+  }
+  .commerce-header > strong {
+    font-size: 15px;
+  }
+  .commerce-header > div {
+    display: none;
+  }
+  .commerce-header > span {
+    margin-left: auto;
+    font-size: 9px;
+  }
+  .commerce-header small {
+    display: none;
+  }
+  .commerce-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .commerce-summary > div {
+    border-bottom: 1px solid #e2e7e2;
+  }
+  .commerce-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .commerce-main .trade-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .commerce-view-tabs > span {
+    display: none;
+  }
+  .bank-nav {
+    width: 155px;
+    padding: 30px 13px;
+  }
+  .bank-nav h2 {
+    font-size: 15px;
+    gap: 8px;
+  }
+  .bank-nav h2 svg {
+    width: 21px;
+  }
+  .bank-main {
+    padding: 29px 22px !important;
+  }
+  .bank-main > header {
+    padding-right: 135px;
+  }
+  .bank-main header h1 {
+    font-size: 22px;
+  }
+  .bank-main header > button {
+    display: none;
+  }
+  .bank-top-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .bank-card {
+    min-height: 200px;
+  }
+  .bank-lower {
+    grid-template-columns: 1fr;
+  }
+  .bank-total {
+    padding: 15px 0;
+  }
+  .bank-total h1 {
+    font-size: 40px;
+  }
+  .bank-total p {
+    margin-bottom: 25px;
+  }
+  .bank-accounts {
+    grid-template-columns: 1fr;
+  }
+  .analytics-app > header {
+    padding-right: 150px;
+    gap: 20px;
+  }
+  .analytics-app > header > strong {
+    font-size: 14px;
+  }
+  .analytics-app > header nav {
+    gap: 13px;
+  }
+  .analytics-app > header button {
+    font-size: 10px;
+  }
+  .analytics-app > main {
+    padding: 25px !important;
+  }
+  .analytics-metrics strong {
+    font-size: 26px;
+  }
+  .analytics-metrics > div {
+    margin-right: 18px;
+  }
+  .analytics-lower {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 17px;
+  }
+  .analytics-panel {
+    padding: 20px;
+  }
+  .analytics-title h1 {
+    font-size: 23px;
+  }
+  .analytics-live {
+    font-size: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .native-stamp {
+    right: 9px;
+    top: 9px;
+    font-size: 6px;
+    letter-spacing: 0.2px;
+    padding: 5px 6px;
+  }
+  .native-wallet-stage {
+    padding: 55px 13px 20px;
+    min-height: 100vh !important;
+  }
+  .native-wallet {
+    width: 100%;
+    max-width: 460px;
+  }
+  .phantom-wallet {
+    padding: 23px 24px 15px;
+    border-radius: 23px;
+  }
+  .wallet-balance h1 {
+    font-size: 36px;
+  }
+  .wallet-balance {
+    padding: 34px 0 20px;
+  }
+  .wallet-actions {
+    gap: 8px;
+  }
+  .wallet-actions button {
+    font-size: 11px;
+    padding: 13px 6px;
+  }
+  .wallet-token {
+    gap: 11px;
+    padding: 18px 3px;
+  }
+  .wallet-token b {
+    font-size: 13px;
+  }
+  .wallet-token small {
+    font-size: 9px;
+  }
+  .wallet-token .native-asset-icon {
+    height: 34px;
+    width: 34px;
+    font-size: 22px;
+  }
+  .wallet-bottom {
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .trust-wallet {
+    padding: 0 23px 15px;
+  }
+  .trust-wallet > header {
+    margin: 0 -23px;
+    padding: 21px 23px;
+  }
+  .trust-wallet .wallet-balance h1 {
+    font-size: 35px;
+  }
+  .native-dialog-backdrop {
+    padding: 12px;
+  }
+  .native-dialog {
+    padding: 25px 20px;
+    max-height: 90dvh;
+    border-radius: 12px;
+  }
+  .native-dialog h1 {
+    font-size: 27px;
+  }
+  .native-dialog .native-graph {
+    height: 200px;
+  }
+  .native-dialog .trade-fields {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .native-dialog .trade-summary {
+    font-size: 10px;
+  }
+  .native-graph {
+    height: 225px;
+  }
+  .plot-tools small {
+    font-size: 6px;
+  }
+  .plot-tools button {
+    font-size: 9px;
+    padding: 5px;
+  }
+  .native-editor-bar {
+    padding: 12px;
+    gap: 10px;
+  }
+  .native-editor-bar label {
+    font-size: 9px;
+  }
+  .native-editor-bar button {
+    font-size: 10px;
+  }
+  .native-editor-bar select {
+    font-size: 9px;
+    padding: 4px;
+  }
+  .terminal-header {
+    height: 92px;
+    padding: 40px 15px 12px;
+    gap: 13px;
+    flex-wrap: wrap;
+  }
+  .terminal-header strong {
+    font-size: 14px;
+  }
+  .terminal-header nav {
+    gap: 13px;
+    margin-left: auto;
+  }
+  .terminal-header nav button {
+    font-size: 9px;
+  }
+  .terminal-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+  .terminal-watch {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    overflow: auto;
+  }
+  .terminal-watch h3,
+  .terminal-watch .order-book,
+  .terminal-watch .pair-head,
+  .terminal-watch .terminal-search {
+    display: none;
+  }
+  .terminal-watch > button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    gap: 10px;
+    width: auto;
+    padding: 10px;
+  }
+  .terminal-watch > button span {
+    font-size: 10px;
+  }
+  .terminal-watch > button b {
+    font-size: 9px;
+  }
+  .terminal-center {
+    width: 100%;
+  }
+  .pair-banner {
+    gap: 15px;
+    padding: 17px 14px;
+  }
+  .pair-banner h1 {
+    font-size: 17px;
+  }
+  .pair-banner > strong {
+    font-size: 17px;
+  }
+  .pair-banner > span {
+    font-size: 7px;
+  }
+  .terminal-resize {
+    height: 315px;
+    min-height: 280px;
+    padding: 9px;
+  }
+  .terminal-ticket .trade-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .terminal-ticket .trade-summary > span:first-child {
+    width: 100%;
+    font-size: 10px;
+  }
+  .terminal-ticket .trade-summary button {
+    width: 100%;
+  }
+  .terminal-ticket {
+    padding: 22px;
+  }
+  .terminal-ticket .desk-tabs {
+    gap: 20px;
+  }
+  .terminal-ticket .desk-tabs button {
+    font-size: 11px;
+  }
+  .terminal-orders {
+    padding: 22px 15px;
+  }
+  .terminal-orders h1 {
+    font-size: 20px;
+  }
+  .terminal-orders h1 small {
+    font-size: 17px;
+    display: block;
+    margin: 15px 0;
+  }
+  .terminal-portfolio h3 {
+    font-size: 10px;
+  }
+  .terminal-portfolio h3 span {
+    font-size: 12px;
+  }
+  .terminal-recent {
+    padding: 15px;
+  }
+  .terminal-recent > div {
+    font-size: 8px;
+    gap: 8px;
+  }
+  .discovery-header {
+    height: 105px;
+    padding: 44px 16px 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .discovery-header > strong {
+    font-size: 16px;
+  }
+  .discovery-header nav {
+    gap: 17px;
+    margin: 0;
+  }
+  .discovery-header nav button {
+    font-size: 10px;
+  }
+  .discovery-tools {
+    padding: 13px;
+    gap: 8px;
+  }
+  .discovery-tools > div {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+  }
+  .discovery-tools > span {
+    display: none;
+  }
+  .discovery-tools select {
+    font-size: 10px;
+  }
+  .discovery-columns {
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: x proximity;
+    gap: 12px;
+    padding: 13px;
+  }
+  .discovery-columns > section {
+    min-width: 85vw;
+    scroll-snap-align: start;
+    padding: 12px;
+  }
+  .discovery-columns h2 {
+    font-size: 18px;
+  }
+  .discovery-columns header > span {
+    display: block;
+    font-size: 8px;
+  }
+  .token-open {
+    padding: 18px 11px;
+    gap: 13px;
+  }
+  .token-art {
+    height: 48px;
+    width: 48px;
+    font-size: 30px;
+  }
+  .token-listing h3 {
+    font-size: 13px;
+  }
+  .token-listing p {
+    font-size: 10px;
+  }
+  .token-metrics {
+    font-size: 8px;
+    flex-wrap: nowrap;
+  }
+  .token-metrics b {
+    font-size: 9px;
+  }
+  .discovery-status {
+    font-size: 6px;
+    letter-spacing: 0;
+    padding: 6px;
+  }
+  .token-detail {
+    padding: 14px;
+    margin: 10px 0;
+  }
+  .token-detail-title {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .token-detail-title h1 {
+    font-size: 20px;
+  }
+  .token-detail-title strong {
+    font-size: 20px;
+    margin-left: 0;
+  }
+  .token-detail .native-graph {
+    height: 260px;
+  }
+  .exodus-app {
+    padding: 0 18px 25px;
+  }
+  .exodus-header {
+    padding: 45px 0 16px;
+    height: auto;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .exodus-header strong {
+    font-size: 12px;
+  }
+  .exodus-header nav {
+    margin-left: auto;
+    gap: 16px;
+  }
+  .exodus-header nav button {
+    font-size: 10px;
+  }
+  .exodus-overview {
+    grid-template-columns: 1fr;
+    padding: 36px 0 22px;
+    gap: 35px;
+  }
+  .allocation-ring {
+    height: 270px;
+    width: 270px;
+    padding: 16px;
+  }
+  .allocation-ring h1 {
+    font-size: 26px;
+  }
+  .exodus-performance h2 {
+    font-size: 21px;
+  }
+  .exodus-performance .native-graph {
+    height: 170px;
+  }
+  .exodus-assets header > span {
+    display: none;
+  }
+  .exodus-assets h2 {
+    font-size: 13px;
+  }
+  .exodus-asset {
+    grid-template-columns: 28px 0.6fr 1fr 1.2fr 12px;
+    gap: 9px;
+    padding: 19px 0;
+    font-size: 10px;
+  }
+  .exodus-asset > span:nth-child(3),
+  .exodus-asset > span:nth-child(5) {
+    display: none;
+  }
+  .exodus-asset > span:nth-child(4) {
+    font-size: 8px;
+  }
+  .exodus-asset strong {
+    font-size: 12px;
+  }
+  .exodus-exchange {
+    margin: 40px 0;
+  }
+  .exodus-exchange h1 {
+    font-size: 25px;
+  }
+  .exodus-exchange .trade-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .studio-header {
+    height: 102px;
+    align-items: flex-end;
+    padding: 40px 15px 15px;
+    gap: 15px;
+  }
+  .studio-header > strong {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .studio-header > div {
+    display: none;
+  }
+  .studio-avatar {
+    margin-left: auto;
+  }
+  .studio-sidebar {
+    width: 52px;
+    min-height: 900px;
+  }
+  .channel-identity {
+    padding: 24px 0 15px;
+  }
+  .channel-art,
+  .channel-identity img {
+    width: 29px;
+    height: 29px;
+    margin: 0;
+  }
+  .channel-art svg {
+    width: 16px;
+  }
+  .channel-identity b,
+  .channel-identity > span {
+    display: none;
+  }
+  .studio-sidebar > button {
+    font-size: 0;
+    padding: 19px 13px;
+    gap: 30px;
+    overflow: hidden;
+  }
+  .studio-sidebar > button svg {
+    width: 18px;
+    flex-shrink: 0;
+  }
+  .studio-main {
+    padding: 25px 16px !important;
+  }
+  .studio-main h1 {
+    font-size: 21px;
+  }
+  .studio-tabs {
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+  .studio-tabs button {
+    font-size: 10px;
+  }
+  .studio-greeting {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 25px 0;
+  }
+  .studio-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .studio-metrics > div {
+    padding: 18px 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .studio-metrics strong {
+    font-size: 20px;
+  }
+  .studio-metrics small {
+    font-size: 7px;
+  }
+  .studio-metrics span {
+    font-size: 9px;
+  }
+  .studio-metrics-panel > .native-plot {
+    padding: 10px 12px;
+  }
+  .studio-metrics-panel .native-graph {
+    height: 210px;
+  }
+  .studio-content {
+    padding: 18px 13px;
+  }
+  .studio-content h2 {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .content-detail-metrics {
+    gap: 20px;
+    font-size: 10px;
+  }
+  .content-detail-metrics b {
+    font-size: 20px;
+  }
+  .detail-art {
+    height: 140px;
+  }
+  .instagram-app {
+    flex-direction: column;
+  }
+  .instagram-rail {
+    width: 100%;
+    padding: 45px 16px 10px;
+    border-right: 0;
+    border-bottom: 1px solid #e4dce4;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .instagram-wordmark {
+    margin: 0 0 4px;
+    width: 100%;
+    font-size: 24px;
+  }
+  .instagram-rail > button {
+    padding: 10px 0;
+    font-size: 10px;
+    gap: 6px;
+  }
+  .instagram-rail > button svg {
+    width: 16px;
+  }
+  .ig-rail-foot {
+    display: none;
+  }
+  .instagram-main {
+    padding: 25px 18px !important;
+  }
+  .instagram-main > header {
+    padding-right: 0;
+    margin-bottom: 25px;
+  }
+  .instagram-main header h1 {
+    font-size: 25px;
+  }
+  .ig-profile {
+    gap: 15px;
+    padding-bottom: 25px;
+  }
+  .ig-profile-ring {
+    height: 68px;
+    width: 68px;
+  }
+  .ig-profile-ring img {
+    height: 56px;
+    width: 56px;
+  }
+  .ig-profile h2 {
+    font-size: 18px;
+  }
+  .ig-profile p {
+    font-size: 10px;
+  }
+  .ig-profile-stats {
+    margin: 10px 0 0 0;
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
+  }
+  .ig-profile-stats > span {
+    flex: 1;
+  }
+  .ig-profile-stats b {
+    font-size: 18px;
+  }
+  .ig-metric-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 23px 14px;
+    padding: 26px 0;
+  }
+  .ig-metric-strip h2 {
+    font-size: 25px;
+    margin: 10px 0;
+  }
+  .ig-metric-strip span {
+    font-size: 10px;
+  }
+  .ig-metric-strip small {
+    font-size: 8px;
+  }
+  .ig-audience {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ig-growth {
+    padding: 20px 17px;
+  }
+  .ig-growth .native-graph {
+    height: 210px;
+  }
+  .ig-posts {
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .ig-photo {
+    height: 155px;
+  }
+  .ig-posts > button:last-child:nth-child(3) {
+    display: none;
+  }
+  .ig-posts b {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .ig-posts small {
+    font-size: 8px;
+  }
+  .tiktok-app {
+    display: block;
+  }
+  .tiktok-nav {
+    width: 100%;
+    padding: 44px 17px 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid #e2e2e8;
+  }
+  .tiktok-nav h2 {
+    margin: 0;
+    width: 100%;
+    font-size: 21px;
+  }
+  .tiktok-nav > p,
+  .tiktok-profile {
+    display: none;
+  }
+  .tiktok-nav > button {
+    margin: 0;
+    padding: 9px 0;
+    font-size: 10px;
+    gap: 7px;
+  }
+  .tiktok-nav > button svg {
+    width: 15px;
+  }
+  .tiktok-main {
+    padding: 26px 18px !important;
+  }
+  .tiktok-main > header {
+    padding-right: 0;
+  }
+  .tiktok-main h1 {
+    font-size: 25px;
+  }
+  .tiktok-main header p {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .tiktok-tabs {
+    gap: 26px;
+  }
+  .tiktok-tabs button {
+    font-size: 11px;
+  }
+  .tiktok-stats {
+    gap: 10px;
+  }
+  .tiktok-stats > button {
+    gap: 15px;
+    padding: 18px 14px;
+  }
+  .tiktok-stats > button.selected {
+    padding-top: 16px;
+  }
+  .tiktok-stats strong {
+    font-size: 23px;
+  }
+  .tiktok-stats span {
+    font-size: 10px;
+  }
+  .tiktok-stats small {
+    font-size: 7px;
+  }
+  .tiktok-graph {
+    padding: 20px 15px;
+  }
+  .tiktok-graph .native-graph {
+    height: 210px;
+  }
+  .tiktok-lower > section {
+    padding: 20px;
+  }
+  .stream-header {
+    height: 103px;
+    padding: 45px 16px 15px;
+    gap: 15px;
+    align-items: flex-end;
+  }
+  .stream-header > strong {
+    font-size: 15px;
+  }
+  .stream-live {
+    font-size: 7px;
+    margin-left: auto;
+  }
+  .stream-layout {
+    display: block;
+  }
+  .stream-nav {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    padding: 5px 15px;
+    overflow: auto;
+  }
+  .stream-nav button {
+    white-space: nowrap;
+    font-size: 10px;
+    padding: 13px 0;
+    gap: 6px;
+    width: auto;
+  }
+  .stream-nav svg {
+    width: 14px;
+  }
+  .stream-main {
+    padding: 23px 16px !important;
+  }
+  .stream-main h1 {
+    font-size: 22px;
+  }
+  .stream-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stream-stats > div {
+    padding: 17px;
+    border-bottom: 1px solid #30263b;
+  }
+  .stream-stats strong {
+    font-size: 23px;
+  }
+  .stream-stats span {
+    font-size: 10px;
+  }
+  .stream-scene {
+    height: 245px;
+  }
+  .stream-scene h2 {
+    font-size: 21px;
+  }
+  .stream-scene p {
+    font-size: 9px;
+  }
+  .stream-quick {
+    padding: 17px;
+    gap: 10px;
+  }
+  .stream-quick button {
+    font-size: 9px;
+  }
+  .stream-mini-chart {
+    padding: 18px;
+  }
+  .stocks-header {
+    padding: 45px 16px 15px;
+    gap: 15px;
+  }
+  .stocks-header > strong {
+    font-size: 18px;
+  }
+  .stocks-header > div {
+    width: 100%;
+    padding: 10px;
+  }
+  .stocks-header nav {
+    gap: 25px;
+    justify-content: flex-start;
+  }
+  .stock-ticker {
+    overflow: auto;
+    gap: 0;
+    padding: 0 10px;
+  }
+  .stock-ticker button {
+    flex-shrink: 0;
+    flex: none;
+    font-size: 9px;
+    padding: 12px 10px;
+  }
+  .stocks-main {
+    display: block;
+    padding: 25px 18px !important;
+  }
+  .stock-value h1 {
+    font-size: 36px;
+  }
+  .stock-value p {
+    font-size: 11px;
+  }
+  .stock-performance > .native-plot .native-graph {
+    height: 240px;
+  }
+  .stock-right {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .stock-order {
+    padding: 23px;
+  }
+  .stock-order .desk-header h2 {
+    font-size: 16px;
+  }
+  .stock-order .desk-tabs {
+    gap: 23px;
+  }
+  .stock-order .desk-tabs button {
+    font-size: 11px;
+  }
+  .stock-order .trade-fields {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .stock-order .trade-fields label:first-child {
+    display: block;
+  }
+  .stock-order .trade-summary {
+    gap: 15px;
+  }
+  .stock-holdings h2 {
+    font-size: 21px;
+  }
+  .stock-holdings > button {
+    font-size: 10px;
+  }
+  .stock-holdings b {
+    font-size: 10px;
+  }
+  .stock-holdings small {
+    font-size: 8px;
+  }
+  .stock-table-head {
+    font-size: 8px;
+  }
+  .commerce-header {
+    height: 100px;
+    padding: 44px 16px 15px;
+    gap: 15px;
+    align-items: flex-end;
+  }
+  .commerce-header > strong {
+    font-size: 17px;
+  }
+  .commerce-header > span {
+    font-size: 8px;
+  }
+  .commerce-layout {
+    display: block;
+  }
+  .commerce-nav {
+    width: 100%;
+    display: flex;
+    gap: 18px;
+    padding: 5px 16px;
+    overflow: auto;
+    border-right: 0;
+    border-bottom: 1px solid #d7ded8;
+  }
+  .commerce-nav > button {
+    white-space: nowrap;
+    padding: 13px 0;
+    font-size: 10px;
+    gap: 7px;
+    width: auto;
+    margin: 0;
+  }
+  .commerce-nav > button svg {
+    width: 14px;
+  }
+  .commerce-nav > button > span {
+    font-size: 7px;
+  }
+  .commerce-channel {
+    display: none;
+  }
+  .commerce-main {
+    padding: 26px 16px !important;
+  }
+  .commerce-main > header {
+    gap: 15px;
+  }
+  .commerce-main h1 {
+    font-size: 24px;
+  }
+  .commerce-main header p {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+  .commerce-main > header > span {
+    font-size: 7px;
+    padding: 7px;
+  }
+  .commerce-summary h2 {
+    font-size: 24px;
+  }
+  .commerce-summary > div {
+    padding: 18px;
+  }
+  .commerce-summary span {
+    font-size: 10px;
+  }
+  .commerce-summary small {
+    font-size: 7px;
+  }
+  .commerce-box {
+    padding: 20px;
+  }
+  .commerce-box .native-graph {
+    height: 210px;
+  }
+  .commerce-recent {
+    font-size: 9px;
+  }
+  .commerce-recent > span {
+    display: none;
+  }
+  .commerce-recent small {
+    display: block;
+  }
+  .commerce-main .trade-desk {
+    padding: 20px;
+  }
+  .commerce-main .trade-fields {
+    gap: 12px;
+  }
+  .commerce-main .trade-fields label {
+    font-size: 10px;
+  }
+  .commerce-main .trade-summary {
+    font-size: 10px;
+  }
+  .bank-app {
+    display: block;
+  }
+  .bank-nav {
+    width: 100%;
+    padding: 45px 16px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  .bank-nav h2 {
+    width: 100%;
+    font-size: 21px;
+    margin: 0 0 8px;
+  }
+  .bank-nav > small,
+  .bank-nav > div {
+    display: none;
+  }
+  .bank-nav > button {
+    padding: 10px 0;
+    width: auto;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .bank-main {
+    padding: 27px 18px !important;
+  }
+  .bank-main > header {
+    padding: 0;
+    margin-bottom: 25px;
+  }
+  .bank-main header h1 {
+    font-size: 26px;
+  }
+  .bank-main header > button {
+    display: flex;
+    font-size: 0;
+    gap: 0;
+    padding: 11px;
+  }
+  .bank-main header p {
+    font-size: 10px;
+  }
+  .bank-total h1 {
+    font-size: 38px;
+  }
+  .bank-total > div {
+    gap: 50px;
+  }
+  .bank-card {
+    padding: 25px;
+    min-height: 210px;
+  }
+  .bank-box {
+    padding: 21px;
+  }
+  .bank-box .native-graph {
+    height: 200px;
+  }
+  .bank-transfer .trade-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bank-transfer .trade-fields label:last-child {
+    grid-column: 1/-1;
+  }
+  .analytics-app > header {
+    height: auto;
+    min-height: 125px;
+    flex-wrap: wrap;
+    padding: 45px 18px 15px;
+    gap: 18px;
+  }
+  .analytics-app > header > strong {
+    width: 100%;
+    font-size: 19px;
+  }
+  .analytics-app > header nav {
+    margin: 0;
+    gap: 25px;
+  }
+  .analytics-app > header nav button {
+    font-size: 11px;
+  }
+  .analytics-app > main {
+    padding: 26px 17px !important;
+  }
+  .analytics-title {
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+  .analytics-title h1 {
+    font-size: 25px;
+  }
+  .analytics-live {
+    font-size: 9px;
+  }
+  .analytics-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 15px;
+  }
+  .analytics-metrics > div {
+    margin: 0;
+  }
+  .analytics-metrics strong {
+    font-size: 30px;
+    margin-top: 12px;
+  }
+  .analytics-metrics span {
+    font-size: 10px;
+  }
+  .analytics-lower {
+    grid-template-columns: 1fr;
+  }
+  .analytics-panel {
+    padding: 20px;
+  }
+  .analytics-panel h2 {
+    font-size: 14px;
+  }
+  .analytics-chart .native-graph {
+    height: 230px;
+  }
+  .analytics-map {
+    height: 190px;
+  }
+  .native-ledger {
+    padding: 12px 0;
+  }
+  .native-capture .trade-fields input,
+  .native-capture .trade-fields select {
+    font-size: 11px;
+  }
+  .content-detail-metrics {
+    gap: 15px;
+  }
+  .content-detail-metrics b {
+    font-size: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .native-capture * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.native-wallet {
+  max-height: calc(100dvh - 84px);
+  display: flex;
+  flex-direction: column;
+}
+.native-wallet > header,
+.native-wallet .wallet-balance,
+.native-wallet .wallet-actions,
+.native-wallet .wallet-tabs,
+.native-wallet .wallet-search,
+.native-wallet .wallet-bottom,
+.native-wallet .wallet-fictional {
+  flex-shrink: 0;
+}
+.wallet-token-list {
+  min-height: 50px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8e81a044 transparent;
+}
+.native-wallet .native-ledger {
+  min-height: 70px;
+  overflow: auto;
+}
+.ref-editor textarea {
+  width: 100%;
+  min-height: 95px;
+  padding: 10px;
+  background: #0e1722;
+  border: 1px solid #3a495c;
+  color: #d9e5f2;
+  border-radius: 6px;
+  font:
+    11px ui-monospace,
+    monospace;
+  margin-top: 10px;
+}
+.ref-editor-backdrop {
+  z-index: 1001;
+}
+.gallery-terminal {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .native-wallet {
+    max-height: none;
+  }
+  .native-wallet .wallet-token-list {
+    max-height: 330px;
+  }
+}
+.simulation-presenting .app > .sidebar {
+  visibility: hidden;
+}
+.exchange-portfolio-app {
+  display: flex;
+  background: #111622;
+  color: #dde4f4;
+  --accent: #7b9cf5;
+}
+.exchange-portfolio-app > aside {
+  width: 200px;
+  padding: 30px 18px;
+  background: #161d2e;
+  border-right: 1px solid #28334c;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.exchange-portfolio-app > aside h2 {
+  font-size: 21px;
+  color: #9db3f1;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+.exchange-portfolio-app > aside button {
+  justify-content: flex-start;
+  gap: 15px;
+  border: 0;
+  background: none;
+  color: #7c8db0;
+  padding: 16px 15px;
+  font-size: 13px;
+}
+.exchange-portfolio-app > aside button.selected {
+  color: #c4d4ff;
+  background: #273451;
+  border-radius: 7px;
+}
+.exchange-portfolio-app > aside > small {
+  margin-top: auto;
+  font-size: 8px;
+  color: #536585;
+}
+.exchange-portfolio-app > main {
+  flex: 1;
+  min-width: 0;
+  padding: 38px !important;
+  max-width: 1350px;
+}
+.exchange-portfolio-app main > header {
+  margin-bottom: 30px;
+}
+.exchange-portfolio-app main > header small {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #6e84af;
+}
+.exchange-portfolio-app main > header h1 {
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  margin: 12px 0;
+}
+.exchange-balance {
+  padding: 27px 30px;
+  border: 1px solid #344467;
+  border-radius: 12px;
+  background: #19233a;
+}
+.exchange-balance > span {
+  font-size: 11px;
+  color: #839cc6;
+}
+.exchange-balance > h1 {
+  font-size: 39px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 18px 0 28px;
+}
+.exchange-balance > div:not(.native-plot) {
+  display: flex;
+  gap: 45px;
+  font-size: 9px;
+  color: #7d94bc;
+}
+.exchange-balance b {
+  display: block;
+  font-size: 15px;
+  color: #bed0f3;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.exchange-balance > .native-plot {
+  margin-top: 25px;
+}
+.exchange-balance .native-graph {
+  height: 215px;
+}
+.exchange-assets {
+  margin-top: 32px;
+}
+.exchange-assets h2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.exchange-assets > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #26344e;
+  border-radius: 0;
+  padding: 19px 4px;
+  color: #b4c9ed;
+  text-align: left;
+}
+.exchange-assets > button > div {
+  min-width: 110px;
+}
+.exchange-assets b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.exchange-assets small {
+  display: block;
+  font-size: 9px;
+  color: #627b9f;
+  margin-top: 7px;
+}
+.exchange-assets span:not(.native-asset-icon) {
+  margin-left: auto;
+  font-size: 13px;
+  color: #6e8db7;
+}
+.exchange-assets strong {
+  margin-left: 40px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.exchange-portfolio-app .trade-fields {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 900px) {
+  .exchange-portfolio-app > aside {
+    width: 155px;
+    padding: 25px 14px;
+  }
+  .exchange-portfolio-app > aside h2 {
+    font-size: 18px;
+  }
+  .exchange-portfolio-app > aside button {
+    font-size: 11px;
+    padding: 14px 10px;
+  }
+  .exchange-portfolio-app > main {
+    padding: 30px 24px !important;
+  }
+  .exchange-assets strong {
+    margin-left: 15px;
+    font-size: 15px;
+  }
+  .exchange-assets span:not(.native-asset-icon) {
+    font-size: 11px;
+  }
+}
+@media (max-width: 600px) {
+  .exchange-portfolio-app {
+    display: block;
+  }
+  .exchange-portfolio-app > aside {
+    width: 100%;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 44px 17px 12px;
+  }
+  .exchange-portfolio-app > aside h2 {
+    width: 100%;
+    margin: 0;
+    font-size: 23px;
+  }
+  .exchange-portfolio-app > aside button {
+    padding: 10px 0;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .exchange-portfolio-app > aside > small {
+    display: none;
+  }
+  .exchange-portfolio-app > main {
+    padding: 26px 17px !important;
+  }
+  .exchange-portfolio-app main > header h1 {
+    font-size: 25px;
+  }
+  .exchange-balance {
+    padding: 23px 20px;
+  }
+  .exchange-balance > h1 {
+    font-size: 34px;
+  }
+  .exchange-assets > button {
+    gap: 12px;
+  }
+  .exchange-assets .native-asset-icon {
+    height: 32px;
+    width: 32px;
+    font-size: 20px;
+  }
+  .exchange-assets > button > div {
+    min-width: 90px;
+  }
+  .exchange-assets b {
+    font-size: 11px;
+  }
+  .exchange-assets small {
+    font-size: 8px;
+  }
+  .exchange-assets span:not(.native-asset-icon) {
+    display: none;
+  }
+  .exchange-assets strong {
+    margin-left: auto;
+    font-size: 14px;
+  }
+}
+.preview-button {
+  padding: 0;
+  height: 210px;
+}
+.preview.actual-preview {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.actual-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.hero-screen .preview.actual-preview {
+  height: 233px;
+  border-radius: 5px;
+}
+.hero-screen .actual-preview img {
+  object-fit: cover;
+}
+.preview-button .actual-preview {
+  pointer-events: none;
+}

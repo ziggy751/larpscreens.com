@@ -7,6 +7,8 @@ export function TradeDesk({
   money,
   notify,
   bank = false,
+  defaultMode = "Buy",
+  defaultAsset = 0,
 }: {
   s: State;
   setS: Dispatch<SetStateAction<State>>;
@@ -14,13 +16,17 @@ export function TradeDesk({
   money: (n: number) => string;
   notify: (s: string) => void;
   bank?: boolean;
+  defaultMode?: string;
+  defaultAsset?: number;
 }) {
-  const [mode, setMode] = useState("Buy"),
+  const [mode, setMode] = useState(defaultMode),
     [order, setOrder] = useState("Market"),
-    [asset, setAsset] = useState(0),
-    [target, setTarget] = useState(1),
-    [quantity, setQuantity] = useState(s.prices[0] > 10000 ? 0.01 : 1),
-    [price, setPrice] = useState(s.prices[0]),
+    [asset, setAsset] = useState(defaultAsset),
+    [target, setTarget] = useState(defaultAsset === 0 ? 1 : 0),
+    [quantity, setQuantity] = useState(
+      s.prices[defaultAsset] > 10000 ? 0.01 : 1,
+    ),
+    [price, setPrice] = useState(s.prices[defaultAsset]),
     [search, setSearch] = useState(""),
     [amount, setAmount] = useState(1000);
   const execute = () => {

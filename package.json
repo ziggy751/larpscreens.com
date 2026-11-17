@@ -9,7 +9,8 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --experimental-strip-types --test tests/engine.test.mjs",
     "deploy": "npm run build && wrangler deploy",
-    "deploy:check": "npm run build && wrangler deploy --dry-run"
+    "deploy:check": "npm run build && wrangler deploy --dry-run",
+    "test:browser": "node tests/flows.mjs && node tests/overhaul.mjs && node tests/fullscreen-fallback.mjs"
   },
   "repository": {
     "type": "git",

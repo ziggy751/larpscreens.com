@@ -125,4 +125,40 @@ test("individual transactions can be reversed without creating money", async () 
   close(restored.cash, s.cash);
   close(restored.savings, s.savings);
 });
-test('profit includes cash and remains unchanged by buying or selling',()=>{let s=createState('stocks');s=step(s,'stocks',defaultSettings);const profit=s.value+s.cash-s.startingWealth;const bought=trade(s,0,1);close(bought.value+bought.cash-bought.startingWealth,profit);const sold=trade(bought,0,-10);close(sold.value+sold.cash-sold.startingWealth,profit)});
+test("profit includes cash and remains unchanged by buying or selling", () => {
+  let s = createState("stocks");
+  s = step(s, "stocks", defaultSettings);
+  const profit = s.value + s.cash - s.startingWealth;
+  const bought = trade(s, 0, 1);
+  close(bought.value + bought.cash - bought.startingWealth, profit);
+  const sold = trade(bought, 0, -10);
+  close(sold.value + sold.cash - sold.startingWealth, profit);
+});
+test("independent dashboard histories do not reuse one identical price pattern", () => {
+  assert.notDeepEqual(
+    createState("stocks").history.map(
+      (h) => h.value / createState("stocks").initial,
+    ),
+    createState("crypto").history.map(
+      (h) => h.value / createState("crypto").initial,
+    ),
+  );
+});
+test("per-asset history follows prices and stays bounded", () => {
+  let s = createState("crypto");
+  for (let i = 0; i < 100; i++) s = step(s, "crypto", defaultSettings);
+  s.prices.forEach((p, i) => {
+    close(s.assetHistory[i].at(-1), p);
+    assert.equal(s.assetHistory[i].length, 64);
+  });
+});
+test("rapid transaction IDs remain unique and reversals remove only one action", async () => {
+  const { undoTransaction } = await import("../src/engine.ts");
+  let s = createState("stocks");
+  s = trade(s, 0, 1);
+  s = trade(s, 1, 1);
+  s = transfer(s, 100);
+  assert.equal(new Set(s.transactions.map((t) => t.id)).size, 3);
+  const next = undoTransaction(s, s.transactions[0].id);
+  assert.equal(next.transactions.length, 2);
+});
