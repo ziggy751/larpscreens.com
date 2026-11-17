@@ -60,3 +60,9 @@ For **Cloudflare Pages**:
 Cloudflare should install dependencies from `package-lock.json`. If automatic installation is disabled, use `npm ci && npm run build` as the build command. No app secrets or backend services are required.
 
 Run `npm run deploy:check` for a local, non-publishing Workers deployment validation. `npm run deploy` performs a real deployment and needs Cloudflare authentication; it is not part of local setup.
+
+## Visual checks
+
+Run the Vite server, then `npm run test:visual` to compare all 16 interfaces at the four requested desktop sizes. Local baselines are explicitly LarpScreens regression fixtures, not official platform references. Use `npm run test:visual:update` only after reviewing intended visual changes. HTML/JSON reports and PNG differences are generated under `test-results/visual/regression`.
+
+`npm run test:visual:official` is separate and fails when genuine official reference screenshots are unavailable. Its report is under `test-results/visual/official`. See [visual accuracy status](docs/VISUAL_ACCURACY_STATUS.md) for the research blocker and outstanding platform comparisons.

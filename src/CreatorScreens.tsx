@@ -146,7 +146,7 @@ function Studio({ p }: { p: ScreenProps }) {
           <span>
             <Play size={16} fill="white" />
           </span>{" "}
-          Larp Studio
+          Creator Studio
         </strong>
         <div>
           <Search size={17} />
@@ -362,7 +362,7 @@ function InstagramScreen({ p }: { p: ScreenProps }) {
     <div className="instagram-app">
       <Stamp exit={p.onExit} />
       <aside className="instagram-rail">
-        <div className="instagram-wordmark">Larp / social</div>
+        <div className="instagram-wordmark">Insights</div>
         {[
           { label: "Overview", icon: LayoutDashboard },
           { label: "Insights", icon: BarChart3 },
@@ -523,7 +523,7 @@ function TikTokScreen({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <aside className="tiktok-nav">
         <h2>
-          <Music2 size={28} /> Larp Studio
+          <Music2 size={28} /> Creator Studio
         </h2>
         <p>CREATOR CENTER</p>
         {["Overview", "Content", "Followers", "Engagement"].map((v) => (
@@ -679,7 +679,7 @@ function Streaming({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header className="stream-header">
         <strong>
-          <Radio size={22} /> LARP BROADCAST
+          <Radio size={22} /> BROADCAST STUDIO
         </strong>
         <span className="stream-live">● SIMULATED LIVE</span>
         <span>{p.profile || "alexmorgan"} · creator dashboard</span>

@@ -47,7 +47,7 @@ export const short = (v: number) =>
 export function Stamp({ exit }: { exit: () => void }) {
   return (
     <div className="native-stamp">
-      <span>SIMULATION · LarpScreens</span>
+      <span>Demo Simulation</span>
       <button aria-label="Exit fullscreen" onClick={exit}>
         ↙
       </button>
@@ -78,12 +78,10 @@ export function Plot({
       ? s.history.map((h) => h.value)
       : s.assetHistory?.[asset] ||
         s.history.map((h) => (h.value / (s.value || 1)) * s.prices[asset]);
-  const data = values
-    .slice(-count)
-    .map((v, i, a) => ({
-      value: i === a.length - 1 && asset !== undefined ? s.prices[asset] : v,
-      open: i ? a[i - 1] : v,
-    }));
+  const data = values.slice(-count).map((v, i, a) => ({
+    value: i === a.length - 1 && asset !== undefined ? s.prices[asset] : v,
+    open: i ? a[i - 1] : v,
+  }));
   const lo = Math.min(...data.flatMap((d) => [d.value, d.open])),
     hi = Math.max(...data.flatMap((d) => [d.value, d.open]));
   const y = (v: number) => 240 - ((v - lo) / (hi - lo || 1)) * 210;

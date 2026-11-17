@@ -317,7 +317,7 @@ function Exodus({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header className="exodus-header">
         <strong>
-          <span>✕</span> LARP / EXODUS STUDY
+          <span>✕</span> PORTFOLIO
         </strong>
         <nav>
           {["Portfolio", "Exchange", "Activity"].map((t) => (
@@ -625,7 +625,7 @@ function Terminal({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header className="terminal-header">
         <strong>
-          <span>▰</span> LARP EXCHANGE
+          <span>▰</span> MARKETS
         </strong>
         <nav>
           {["Markets", "Trade", "Wallet", "Orders"].map((v) => (
@@ -831,7 +831,7 @@ function ExchangePortfolio({ p }: { p: ScreenProps }) {
     <div className="exchange-portfolio-app">
       <Stamp exit={p.onExit} />
       <aside>
-        <h2>◈ Larp Assets</h2>
+        <h2>◈ Digital assets</h2>
         {["Portfolio", "Trade", "Activity"].map((v) => (
           <button
             key={v}

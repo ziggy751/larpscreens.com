@@ -52,7 +52,7 @@ function Stocks({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header className="stocks-header">
         <strong>
-          <TrendingUp size={23} /> Larp / investing
+          <TrendingUp size={23} /> Investing
         </strong>
         <div>
           <Search size={16} />
@@ -217,7 +217,7 @@ function Commerce({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header className="commerce-header">
         <strong>
-          <ShoppingBag size={21} /> Larp Commerce
+          <ShoppingBag size={21} /> Commerce
         </strong>
         <div>
           <Search size={16} />
@@ -456,7 +456,7 @@ function Bank({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <aside className="bank-nav">
         <h2>
-          <Landmark size={24} /> Larp Reserve
+          <Landmark size={24} /> Private Banking
         </h2>
         <small>PRIVATE FINANCE · DEMO</small>
         {["Overview", "Accounts", "Transactions"].map((v) => (
@@ -515,7 +515,7 @@ function Bank({ p }: { p: ScreenProps }) {
               </section>
               <section className="bank-card">
                 <div>
-                  <strong>LARP RESERVE</strong>
+                  <strong>DEMO CARD</strong>
                   <CreditCard size={28} />
                 </div>
                 <span>FICTIONAL DEMO CARD</span>
@@ -603,8 +603,7 @@ function Analytics({ p }: { p: ScreenProps }) {
       <Stamp exit={p.onExit} />
       <header>
         <strong>
-          <Globe size={22} />{" "}
-          {collection ? "Larp Collections" : "Larp Analytics"}
+          <Globe size={22} /> {collection ? "Collections" : "Analytics"}
         </strong>
         <nav>
           {["Overview", "Realtime", "Pages", "Sources"].map((v) => (
